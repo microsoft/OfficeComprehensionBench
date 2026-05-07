@@ -9,7 +9,6 @@ __pycache__/
 Output/
 CompeteAnalysis/
 release/
-Input/
 *.log
 *_success.txt
 

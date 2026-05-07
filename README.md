@@ -66,7 +66,7 @@ multi-LLM majority-voting evaluation with `--max-concurrent 40`.
 ## Data formats
 
 Layout under `Input/`:
-- `Input/Query/*.ndjson` — query sets (one JSON per line, see below).
+- `Input/Query/*.ndjson` — query sets (one JSON per line, see below). Released data is in these ndjson files
 - `Input/Scrape/*.ndjson` — scrape responses (one JSON per line).
   `.tsv` is also accepted (slim header `filepath\tquery\tresponse`, or
   legacy 7-column raw scrape).
