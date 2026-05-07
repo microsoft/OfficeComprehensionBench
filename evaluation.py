@@ -143,7 +143,7 @@ async def evaluate_response_with_accuracy_prompt(
         # Format the evaluation prompt using accuracy prompt template
         evaluation_prompt = format_accuracy_evaluation_prompt(query, model_response, gold_criteria)
         print(f"Evaluating Query ID {query_id}...")
-        print("evaluation_prompt", evaluation_prompt)
+        # print("evaluation_prompt", evaluation_prompt)
         
         # Call GPT for evaluation using Responses API
         response = azure_client.responses.create(

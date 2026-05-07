@@ -924,8 +924,7 @@ async def process_single_tsv(
                         successful_dicts,
                         max_concurrent=max_concurrent,
                         use_majority_voting=True,
-                        eval_models=eval_models,
-                        prompt_template=prompt_template
+                        eval_models=eval_models
                     )
                 else:
                     evaluation_results = await evaluate_batch_results_with_accuracy_prompt(successful_dicts, max_concurrent=max_concurrent)
@@ -1274,8 +1273,7 @@ Examples:
                             successful_dicts,
                             max_concurrent=args.max_concurrent,
                             use_majority_voting=True,
-                            eval_models=eval_models,
-                            prompt_template="domain"
+                            eval_models=eval_models
                         )
                     else:
                         evaluation_results = await evaluate_batch_results_with_accuracy_prompt(successful_dicts, max_concurrent=args.max_concurrent)
