@@ -16,7 +16,3 @@ release/
 .DS_Store
 .vscode/
 .idea/
-
-# Node / Vite
-node_modules/
-dist/
