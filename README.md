@@ -1,4 +1,4 @@
-# Compete Response Evaluation Toolkit
+# Evaluation Toolkit
 
 LLM-as-judge evaluation pipeline for scoring AI assistant responses to
 document-grounded questions. Supports single-model evaluation
