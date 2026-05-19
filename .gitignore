@@ -8,11 +8,21 @@ __pycache__/
 # Run artifacts
 Output/
 CompeteAnalysis/
+reference_files/
 release/
+hf_ref/
 *.log
 *_success.txt
+Input/Query/OfficeBenchmark_DomainQnA.ndjson
+Input/Query/OfficeBenchmark_ExcelQnA_FileFidelity.ndjson
+Input/Query/OfficeBenchmark_PPTQnA_FileFidelity.ndjson
+Input/Query/OfficeBenchmark_WordQnA_FileFidelity.ndjson
 
 # OS / editor
 .DS_Store
 .vscode/
 .idea/
+
+# Local caches / scratch
+_*.parquet
+tmp_html/

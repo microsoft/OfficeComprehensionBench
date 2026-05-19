@@ -1,8 +1,35 @@
-# Evaluation Toolkit
+# OfficeComprehensionBenchmark (OCB) — Evaluation Toolkit
 
 LLM-as-judge evaluation pipeline for scoring AI assistant responses to
-document-grounded questions. Supports single-model evaluation
-(Azure OpenAI GPT) and multi-LLM majority voting (GPT + Gemini + Claude).
+document-grounded questions over Microsoft Office files (Word, Excel,
+PowerPoint). Supports single-model evaluation (Azure OpenAI GPT) and
+multi-LLM majority voting (GPT + Gemini + Claude).
+
+The benchmark itself — questions, reference answers, atomic assertion
+rubrics, the URL manifest, and the redistributable subset of reference
+files — is hosted on Hugging Face:
+
+**https://huggingface.co/datasets/confanon/OfficeComprehensionBenchmark**
+
+This repository hosts the evaluation prompts, judge scripts, and the
+download/conversion utilities that materialize the URL-referenced
+portion of the corpus into native Office formats.
+
+## About the benchmark
+
+OCB has two tracks:
+
+- **File Fidelity Q&A** — structural and visual perception of document
+  artifacts (text, tables, charts, formulas, formatting, embedded
+  objects). 244 files, 922 queries.
+- **Domain Q&A** — expert-level reasoning over real-world business
+  documents across 12 industries. 124 files, 120 queries, 8,450 atomic
+  assertions.
+
+OCB is intended for **evaluation, not training**. It is not validated
+for file formats outside `.docx` / `.xlsx` / `.pptx`, nor for
+high-stakes deployment decisions in regulated domains on the basis of
+OCB scores alone.
 
 ## Quick start
 
@@ -16,19 +43,29 @@ pip install -r requirements.txt
 cp .env.example .env          # then fill in keys (see "Setup" below)
 az login                      # for Azure OpenAI (DefaultAzureCredential)
 
-# 3. (optional) download the reference document corpus
+# 3. download the reference document corpus
 python download_and_convert_files.py --output-dir reference_files
+# Some sources (auth-gated, dead links, format-conversion failures) will
+# error out — see "Manual downloads" below.
 
-# 4. run the bundled PPT sample end-to-end
+# 4. generate the query NDJSON files from the Hugging Face dataset
+python generate_query_ndjson.py
+# Writes four files under Input/Query/:
+#   OfficeBenchmark_DomainQnA.ndjson              (120 queries)
+#   OfficeBenchmark_ExcelQnA_FileFidelity.ndjson  (277)
+#   OfficeBenchmark_PPTQnA_FileFidelity.ndjson    (238)
+#   OfficeBenchmark_WordQnA_FileFidelity.ndjson   (383)
+
+# 5. run the bundled PPT sample end-to-end
 ./run_sample.sh               # macOS / Linux / WSL / Git Bash
 .\run_sample.ps1              # Windows PowerShell
 ```
 
-The sample scripts run `compete_tsv_response_processor.py` against
-`Input/Query/OfficeBenchmark_PPTQnA_FileFidelity_0505_NoWS_NoCl_NoFC.ndjson`
-and `Input/Scrape/sample_conversations.ndjson` (2 PPT records),
-write results under `Output/PPT_0505_Sample_Round6_Eval1/`, and run
-multi-LLM majority-voting evaluation with `--max-concurrent 40`.
+The sample scripts run `compete_response_processor.py` against
+`Input/Query/OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson` and
+`Input/Scrape/sample_conversations.ndjson` (2 PPT records), write
+results under `Output/PPT_SampleRun/`, and run multi-LLM majority-voting
+evaluation with `--max-concurrent 40`.
 
 ## Contents
 
@@ -42,19 +79,60 @@ multi-LLM majority-voting evaluation with `--max-concurrent 40`.
 - `eval_prompt.md` — assertion-based judge prompt used by both evaluators.
 
 ### Orchestration
-- `compete_tsv_response_processor.py` — matches scrape responses to NDJSON
+- `compete_response_processor.py` — matches scrape responses to NDJSON
   queries, runs evaluation, writes a per-run output bundle.
 - `run_sample.sh` / `run_sample.ps1` — turn-key sample run against the
   bundled PPT QnA query set + 2-record sample scrape.
 
 ### Data prep
 - `download_and_convert_files.py` — downloads the reference document
-  corpus from public URLs / HuggingFace, converting PDFs and HTML to
-  Office formats where needed.
-- `files_source_url.json` — manifest of the 301 reference documents.
-- `possible_manual_download.csv` — 25 documents that cannot be fetched
-  automatically (auth, dead links, etc.); listed with source URL,
-  original format, and target format.
+  corpus from the OCB Hugging Face manifest
+  (`data/ocb_source_urls.parquet`). PDF sources are converted to
+  `docx`/`pptx` via Adobe PDF Services. HTML sources are rendered to
+  PDF with headless Edge/Chrome and then converted via Adobe — there is
+  no fallback path for HTML, so both `PDF_SERVICES_CLIENT_ID` /
+  `PDF_SERVICES_CLIENT_SECRET` and an installed Microsoft Edge or
+  Google Chrome are required. Use `-f <filename>` to process specific
+  files (repeat or comma-separate for multiple). See "Manual downloads"
+  below for files that cannot be fetched automatically.
+- `generate_query_ndjson.py` — generates the per-track query NDJSON
+  files in `Input/Query/` from the OCB Hugging Face Q&A parquet
+  (`data/ocb_qna_data.parquet`). Splits the 1,018 queries into four
+  files: Domain Q&A plus Excel/PPT/Word File Fidelity. Run with
+  `python generate_query_ndjson.py` (override the source via
+  `--parquet <url-or-path>` or the destination via `--output-dir`).
+
+### Manual downloads
+
+`download_and_convert_files.py` will not retrieve every reference
+document successfully — expect a handful of failures from auth-gated
+sources (e.g. SEC EDGAR without `SEC_USER_AGENT`), dead links, sites
+that block scripted access, or PDF/HTML→Office conversion errors.
+
+After the run, check `reference_files/_download_results.json` (and
+`reference_files/_download_summary.txt`) for the per-file status. Any
+entries marked as failed need to be fetched and converted manually into
+`reference_files/` using the filename and target format listed there.
+`possible_manual_download.csv` is provided as a reference example of
+what such a list looks like — documents that cannot be fetched
+automatically (auth, dead links, etc.); listed with source URL,
+original format, and target format.
+
+#### Excluded from the public release (May 07 update)
+
+Three Excel files included in the original evaluation set are
+**excluded from the public release** because their Kaggle source
+licensing (CC BY-NC-SA 4.0) is incompatible with the dataset license:
+
+- `winemag-data-130k-v2_sampled.csv`
+- `Banking_Call_Data.csv`
+- `brazilian_ecommerce_cleaned.csv`
+
+The associated File Fidelity queries targeting these files are also
+excluded. Reported benchmark numbers in the accompanying paper reflect
+the full evaluation set including these files; to reproduce the full
+evaluation, obtain the three datasets directly from Kaggle under the
+original publishers' terms. Source URLs are listed in the URL manifest.
 
 ### Post-processing
 - `evaluate_results.py` — re-run evaluation against an existing results NDJSON.
@@ -68,8 +146,6 @@ multi-LLM majority-voting evaluation with `--max-concurrent 40`.
 Layout under `Input/`:
 - `Input/Query/*.ndjson` — query sets (one JSON per line, see below). Released data is in these ndjson files
 - `Input/Scrape/*.ndjson` — scrape responses (one JSON per line).
-  `.tsv` is also accepted (slim header `filepath\tquery\tresponse`, or
-  legacy 7-column raw scrape).
 
 Input query NDJSON (one JSON per line):
 ```json
@@ -123,21 +199,34 @@ Bundled sample (PPT, 2 records, multi-LLM majority voting):
 ./run_sample.sh        # or .\run_sample.ps1 on Windows
 ```
 
-End-to-end against your own scrape directory:
+End-to-end against your own scrape directory (bash / Linux / macOS / WSL):
 ```bash
-python compete_tsv_response_processor.py \
-  --input OfficeBenchmark_DomainQnA_0505_NoWS_NoCl_NoFC.ndjson \
+python compete_response_processor.py \
+  --input OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson \
   --scrape-directory Input/Scrape \
   --evaluate --eval-majority-vote --max-concurrent 40
 ```
 
 Single scrape file with custom output directory:
 ```bash
-python compete_tsv_response_processor.py \
-  --input OfficeBenchmark_PPTQnA_FileFidelity_0505_NoWS_NoCl_NoFC.ndjson \
-  --tsv-file Input/Scrape/my_scrape.ndjson \
-  --output-dir PPT_MyRun \
-  --evaluate
+python compete_response_processor.py \
+  --input OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson \
+  --scrape-file Input/Scrape/sample_conversations.ndjson \
+  --output-dir PPT_SampleRun \
+  --evaluate --eval-majority-vote --max-concurrent 40
+```
+
+PowerShell equivalent (use backticks `` ` `` for line continuation, not `\`):
+```powershell
+python compete_response_processor.py `
+  --input OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson `
+  --scrape-file Input/Scrape/sample_conversations.ndjson `
+  --output-dir PPT_SampleRun `
+  --evaluate --eval-majority-vote --max-concurrent 40
+```
+Or keep everything on one line:
+```powershell
+python compete_response_processor.py --input OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson --scrape-file Input/Scrape/sample_conversations.ndjson --output-dir PPT_SampleRun --evaluate --eval-majority-vote --max-concurrent 40
 ```
 
 Re-evaluate existing results:
@@ -164,6 +253,27 @@ Default judges (override via `--eval-gpt-model`, `--eval-gemini-model`,
 The single-model default is GPT-5.4. Majority voting requires all three
 API keys.
 
+## Citation
+
+```bibtex
+@misc{ocb2026,
+  title  = {OfficeComprehensionBenchmark},
+  author = {Anonymous},
+  year   = {2026}
+}
+```
+
 ## License
 
-MIT — see `LICENSE`.
+- **Code in this repository**: MIT — see [LICENSE](LICENSE).
+- **OCB dataset** (questions, reference answers, atomic assertions,
+  and the redistributable subset of reference files hosted on Hugging
+  Face): Community Data License Agreement – Permissive, Version 2.0
+  ([CDLA-Permissive-2.0](https://cdla.dev/permissive-2-0/)). Per-source
+  attribution and notice details are maintained in the `NOTICES.md`
+  file on the Hugging Face dataset repository.
+- **URL-referenced files** (downloaded by
+  `download_and_convert_files.py` from third-party publishers): retain
+  their original licenses. OCB does not assert a license over these
+  files; users fetch them directly from the original publishers under
+  those publishers' terms.

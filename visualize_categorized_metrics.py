@@ -98,34 +98,7 @@ def generate_visualization_plots(metrics_file_path: str, output_base_dir: str = 
         
         print(f"  Creating ranking plots for {df['category_type'].nunique()} category types...")
         create_ranking_plots(df, output_dir)
-        
-        # Generate size-based visualizations if results file exists
-        results_dir = Path(metrics_file_path).parent
-        results_file = results_dir / f"{results_dir.name}_results.ndjson"
-        if not results_file.exists():
-            # Try to find results file with different naming pattern
-            possible_results = list(results_dir.glob("*_results.ndjson"))
-            if possible_results:
-                results_file = possible_results[0]
-        
-        if results_file.exists():
-            print("  Generating size-based visualizations...")
-            try:
-                import subprocess
-                import sys
-                
-                # Call the size visualization script
-                result = subprocess.run([
-                    sys.executable, "visualize_size_metrics.py", str(results_dir)
-                ], capture_output=True, text=True, cwd=Path(__file__).parent)
-                
-                if result.returncode == 0:
-                    print("  ✅ Size ranking plot generated successfully")
-                else:
-                    print(f"  ⚠️  Size visualization warning: {result.stderr.strip()}")
-            except Exception as e:
-                print(f"  ⚠️  Could not generate size plots: {str(e)}")
-        
+
         print(f"  ✅ Ranking plots saved to: {output_dir}")
         plot_files = list(output_dir.glob('ranking_*.png'))
         for file in sorted(plot_files):

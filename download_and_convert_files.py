@@ -1,16 +1,21 @@
-"""Download (and optionally convert PDF -> Office) the reference files for OCB.
+"""Download (and optionally convert PDF/HTML -> Office) the reference files for OCB.
 
-Reads `files_source_url.json` (next to this script) and downloads each file.
-If `conversion_required` is true and the source is a PDF, it converts it to
-the target Office format (`docx` or `pptx`) using Adobe PDF Services.
+Reads the OCB source-URL manifest published on Hugging Face
+(``ocb_source_urls.parquet``) and downloads each file into the output
+directory using the ``filename`` column as the final on-disk name.
 
-Hugging Face fallback URLs are downloaded directly with no conversion needed.
+If ``conversion_required`` is true:
+- PDF sources are converted to ``docx``/``pptx`` via Adobe PDF Services.
+- HTML sources are first rendered to PDF with headless Edge/Chrome and then
+  converted via Adobe PDF Services. There is **no fallback** for HTML; both
+  a Chromium browser and Adobe credentials are required.
 
 Environment (see .env.example):
 - PDF_SERVICES_CLIENT_ID
 - PDF_SERVICES_CLIENT_SECRET
 - HF_TOKEN              (optional: Hugging Face access token for private datasets)
 - SEC_USER_AGENT        (required for sec.gov URLs, format: "Name email@example.com")
+- CHROMIUM_PATH         (optional: full path to msedge.exe / chrome.exe)
 """
 import argparse
 import json
@@ -30,8 +35,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_MANIFEST = ROOT / "files_source_url.json"
-DEFAULT_OUTPUT = ROOT / "downloaded_files"
+DEFAULT_OUTPUT = ROOT / "reference_files"
+HF_PARQUET_URL = (
+    "https://huggingface.co/datasets/confanon/OfficeComprehensionBenchmark/"
+    "resolve/main/data/ocb_source_urls.parquet"
+)
+MANIFEST_CACHE = ROOT / "_ocb_source_urls.parquet"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -176,41 +185,98 @@ def convert_pdf_to_office(pdf_path: Path, output_path: Path, target_format: str)
         return False, f"{type(e).__name__}: {e}"
 
 
-def convert_html_to_docx(html_path: Path, output_path: Path) -> tuple[bool, str | None]:
-    """Convert HTML to DOCX. Prefers pandoc (best fidelity), falls back to htmldocx."""
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    pandoc = shutil.which("pandoc")
-    if pandoc:
-        try:
-            proc = subprocess.run(
-                [pandoc, str(html_path), "-f", "html", "-t", "docx", "-o", str(output_path), "--standalone"],
-                capture_output=True, text=True, timeout=300,
-            )
-            if proc.returncode == 0 and output_path.exists() and output_path.stat().st_size > 1024:
-                return True, None
-            err = (proc.stderr or proc.stdout or "").strip().splitlines()[-1:] or ["pandoc returned non-zero"]
-            return False, f"pandoc: {err[0]}"
-        except subprocess.TimeoutExpired:
-            return False, "pandoc timeout (>300s)"
-        except Exception as e:
-            return False, f"pandoc error: {type(e).__name__}: {e}"
+def _find_chromium() -> str | None:
+    """Locate a headless-capable Chromium browser (Edge or Chrome) on Windows."""
+    env = os.environ.get("CHROMIUM_PATH")
+    if env and Path(env).exists():
+        return env
+    candidates = [
+        shutil.which("msedge"),
+        shutil.which("chrome"),
+        rf"{os.environ.get('ProgramFiles', '')}\Microsoft\Edge\Application\msedge.exe",
+        rf"{os.environ.get('ProgramFiles(x86)', '')}\Microsoft\Edge\Application\msedge.exe",
+        rf"{os.environ.get('ProgramFiles', '')}\Google\Chrome\Application\chrome.exe",
+        rf"{os.environ.get('ProgramFiles(x86)', '')}\Google\Chrome\Application\chrome.exe",
+        rf"{os.environ.get('LOCALAPPDATA', '')}\Google\Chrome\Application\chrome.exe",
+    ]
+    for c in candidates:
+        if c and Path(c).exists():
+            return c
+    return None
 
-    # Fallback: htmldocx
+
+def convert_html_to_pdf(
+    html_path: Path,
+    pdf_path: Path,
+    timeout: int = 180,
+) -> tuple[bool, str | None]:
+    """Render an HTML file to PDF using headless Edge/Chrome.
+
+    Uses the browser's built-in ``--print-to-pdf`` so layout matches what the
+    user sees in a browser. No network access for sibling images is required
+    (missing images are dropped silently, text/tables are preserved).
+    """
+    browser = _find_chromium()
+    if not browser:
+        return False, "no Edge/Chrome found (set CHROMIUM_PATH)"
+
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    file_uri = html_path.resolve().as_uri()
+    cmd = [
+        browser,
+        "--headless=new",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--disable-extensions",
+        "--hide-scrollbars",
+        "--run-all-compositor-stages-before-draw",
+        "--virtual-time-budget=10000",
+        f"--print-to-pdf={pdf_path}",
+        "--print-to-pdf-no-header",
+        file_uri,
+    ]
     try:
-        from htmldocx import HtmlToDocx
-        from docx import Document
-    except ImportError:
-        return False, "pandoc not found and htmldocx not installed (pip install htmldocx python-docx, or install pandoc)"
-    try:
-        html = html_path.read_text(encoding="utf-8", errors="ignore")
-        doc = Document()
-        HtmlToDocx().add_html_to_document(html, doc)
-        doc.save(str(output_path))
-        if output_path.exists() and output_path.stat().st_size > 1024:
-            return True, None
-        return False, "htmldocx produced empty/invalid file"
+        proc = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=timeout,
+        )
+    except subprocess.TimeoutExpired:
+        return False, f"chromium timeout after {timeout}s"
     except Exception as e:
-        return False, f"htmldocx error: {type(e).__name__}: {e}"
+        return False, f"chromium error: {type(e).__name__}: {e}"
+
+    if pdf_path.exists() and pdf_path.stat().st_size > 1024:
+        return True, None
+    tail = (proc.stderr or proc.stdout or "").strip().splitlines()[-1:] \
+        or [f"chromium exit {proc.returncode}"]
+    return False, f"chromium: {tail[0]}"
+
+
+def convert_html_to_docx(html_path: Path, output_path: Path) -> tuple[bool, str | None]:
+    """Convert HTML to DOCX via HTML -> PDF (Chromium) -> DOCX (Adobe).
+
+    This is the only supported HTML conversion path. Both a Chromium browser
+    (Edge or Chrome) and Adobe PDF Services credentials are required; there
+    is no fallback to other converters.
+    """
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if not (os.getenv("PDF_SERVICES_CLIENT_ID")
+            and os.getenv("PDF_SERVICES_CLIENT_SECRET")):
+        return False, "PDF_SERVICES_CLIENT_ID / PDF_SERVICES_CLIENT_SECRET not set"
+    if not _find_chromium():
+        return False, "no Edge/Chrome found (set CHROMIUM_PATH)"
+
+    tmp_pdf = output_path.with_suffix(".via_chromium.pdf")
+    try:
+        ok, err = convert_html_to_pdf(html_path, tmp_pdf)
+        if not ok:
+            return False, f"HTML->PDF: {err}"
+        ok2, err2 = convert_pdf_to_office(tmp_pdf, output_path, "docx")
+        if not ok2:
+            return False, f"PDF->DOCX: {err2}"
+        return True, None
+    finally:
+        tmp_pdf.unlink(missing_ok=True)
 
 
 def process_entry(entry: dict, output_dir: Path) -> dict:
@@ -268,21 +334,112 @@ def process_entry(entry: dict, output_dir: Path) -> dict:
     return {"filename": fname, "status": "downloaded", "reason": None}
 
 
+def load_manifest(parquet_path_or_url: str = HF_PARQUET_URL) -> list[dict]:
+    """Load the OCB manifest from the Hugging Face parquet.
+
+    Accepts either a local .parquet path or an http(s) URL pointing to one.
+    Returns a list of dicts with keys: filename, url, original_format,
+    final_format, conversion_required (bool).
+    """
+    if parquet_path_or_url.startswith(("http://", "https://")):
+        if not MANIFEST_CACHE.exists() or MANIFEST_CACHE.stat().st_size < 256:
+            logger.info(f"Fetching manifest: {parquet_path_or_url}")
+            ok, err = download_file(parquet_path_or_url, MANIFEST_CACHE)
+            if not ok:
+                raise RuntimeError(f"Failed to download manifest: {err}")
+        path = MANIFEST_CACHE
+    else:
+        path = Path(parquet_path_or_url)
+
+    import pandas as pd  # local import to keep optional
+    df = pd.read_parquet(path)
+    col = {c.lower(): c for c in df.columns}
+
+    def pick(*names: str) -> str | None:
+        for n in names:
+            if n in col:
+                return col[n]
+        return None
+
+    c_name = pick("filename", "file_name", "name")
+    c_url = pick("url", "source_url", "download_url")
+    c_orig = pick("original_format", "source_format", "src_format")
+    c_final = pick("final_format", "required_format", "target_format", "format")
+    c_conv = pick("conversion_required", "convert", "needs_conversion")
+    if not (c_name and c_url and c_final):
+        raise RuntimeError(
+            f"parquet missing required columns; got {list(df.columns)}"
+        )
+
+    def to_bool(v) -> bool:
+        if isinstance(v, bool):
+            return v
+        if v is None:
+            return False
+        return str(v).strip().lower() in ("yes", "true", "y", "1")
+
+    out: list[dict] = []
+    for _, row in df.iterrows():
+        out.append({
+            "filename": str(row[c_name]),
+            "url": str(row[c_url]),
+            "original_format": (
+                str(row[c_orig]).lower()
+                if c_orig and row[c_orig] is not None else ""
+            ),
+            "final_format": (
+                str(row[c_final]).lower()
+                if row[c_final] is not None else ""
+            ),
+            "conversion_required": to_bool(row[c_conv]) if c_conv else False,
+        })
+    return out
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--manifest", default=str(DEFAULT_MANIFEST), help="files_source_url.json path")
+    p.add_argument(
+        "--manifest",
+        default=HF_PARQUET_URL,
+        help=(
+            "path or URL to the OCB parquet manifest. "
+            "Defaults to the Hugging Face copy."
+        ),
+    )
     p.add_argument("--output-dir", default=str(DEFAULT_OUTPUT), help="output directory")
     p.add_argument("--limit", type=int, default=0, help="limit number of files (0 = all)")
     p.add_argument("--filter-format", default=None, help="only process this final_format (e.g. docx)")
     p.add_argument("--only-conversions", action="store_true", help="only files where conversion_required=true")
+    p.add_argument(
+        "--filename",
+        "-f",
+        action="append",
+        default=None,
+        help=(
+            "process only the named file(s). Repeat the flag or pass a "
+            "comma-separated list. Matches the `filename` column exactly "
+            "(case-insensitive)."
+        ),
+    )
     p.add_argument("--delay", type=float, default=0.3, help="seconds between downloads")
     args = p.parse_args()
 
-    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+    manifest = load_manifest(args.manifest)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     items = manifest
+    if args.filename:
+        wanted = {
+            n.strip().lower()
+            for spec in args.filename
+            for n in spec.split(",")
+            if n.strip()
+        }
+        items = [e for e in items if e["filename"].lower() in wanted]
+        missing = wanted - {e["filename"].lower() for e in items}
+        if missing:
+            logger.warning(f"No manifest entries for: {', '.join(sorted(missing))}")
     if args.filter_format:
         items = [e for e in items if (e.get("final_format") or "").lower() == args.filter_format.lower()]
     if args.only_conversions:

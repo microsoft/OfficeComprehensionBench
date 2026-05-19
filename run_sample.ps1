@@ -1,9 +1,8 @@
 # Run the evaluation pipeline against the bundled PPT sample (PowerShell).
-# Settings mirrored from run_fidelity_0430_all3models_round6.ps1.
 #
 # Inputs:
-#   Input/Query/OfficeBenchmark_PPTQnA_FileFidelity_0505_NoWS_NoCl_NoFC.ndjson
-#   Input/Scrape/sample_conversations.ndjson  (PPT-only sample, 2 rows)
+#   Input/Query/OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson  (bundled, 2 rows)
+#   Input/Scrape/sample_conversations.ndjson                       (PPT-only sample, 2 rows)
 #
 # Prereqs:
 #   1. conda activate comp
@@ -13,15 +12,21 @@
 $ErrorActionPreference = 'Stop'
 Set-Location -Path $PSScriptRoot
 
-$InputNdjson = "OfficeBenchmark_PPTQnA_FileFidelity_0505_NoWS_NoCl_NoFC.ndjson"
+$InputNdjson = "OfficeBenchmark_PPTQnA_FileFidelity_Sample.ndjson"
 $ScrapeFile  = "Input/Scrape/sample_conversations.ndjson"
-$OutputDir   = "PPT_0505_Sample_Round6_Eval1"
+$OutputDir   = "PPT_SampleRun"
+$QueryPath   = Join-Path "Input/Query" $InputNdjson
+
+if (-not (Test-Path -LiteralPath $QueryPath)) {
+    Write-Error "Sample query NDJSON not found at $QueryPath (it is bundled in the repo)."
+    exit 1
+}
 
 Write-Host "`n========== Sample run: PPT QnA + sample_conversations ==========" -ForegroundColor Cyan
 
-python compete_tsv_response_processor.py `
+python compete_response_processor.py `
     --input $InputNdjson `
-    --tsv-file $ScrapeFile `
+    --scrape-file $ScrapeFile `
     --output-dir $OutputDir `
     --evaluate `
     --eval-majority-vote `
