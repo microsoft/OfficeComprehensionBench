@@ -1,7 +1,7 @@
 # OfficeComprehensionBenchmark (OCB) — Evaluation Toolkit
 
 LLM-as-judge evaluation pipeline for scoring AI assistant responses to
-document-grounded questions over Microsoft Office files (Word, Excel,
+document-grounded questions over Office files (Word, Excel,
 PowerPoint). Supports single-model evaluation (Azure OpenAI GPT) and
 multi-LLM majority voting (GPT + Gemini + Claude).
 
