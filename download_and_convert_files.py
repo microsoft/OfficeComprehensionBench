@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parent
 DEFAULT_OUTPUT = ROOT / "reference_files"
 HF_PARQUET_URL = (
-    "https://huggingface.co/datasets/confanon/OfficeComprehensionBenchmark/"
+    "https://huggingface.co/datasets/microsoft/OfficeComprehensionBenchmark/"
     "resolve/main/data/ocb_source_urls.parquet"
 )
 MANIFEST_CACHE = ROOT / "_ocb_source_urls.parquet"

@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parent
 HF_PARQUET_URL = (
-    "https://huggingface.co/datasets/confanon/OfficeComprehensionBenchmark/"
+    "https://huggingface.co/datasets/microsoft/OfficeComprehensionBenchmark/"
     "resolve/main/data/ocb_qna_data.parquet"
 )
 DEFAULT_OUTPUT_DIR = ROOT / "Input" / "Query"

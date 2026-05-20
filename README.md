@@ -1,7 +1,7 @@
 # OfficeComprehensionBenchmark (OCB) — Evaluation Toolkit
 
 LLM-as-judge evaluation pipeline for scoring AI assistant responses to
-document-grounded questions over Office files (Word, Excel,
+document-grounded questions over Microsoft Office files (Word, Excel,
 PowerPoint). Supports single-model evaluation (Azure OpenAI GPT) and
 multi-LLM majority voting (GPT + Gemini + Claude).
 
@@ -9,7 +9,7 @@ The benchmark itself — questions, reference answers, atomic assertion
 rubrics, the URL manifest, and the redistributable subset of reference
 files — is hosted on Hugging Face:
 
-**https://huggingface.co/datasets/confanon/OfficeComprehensionBenchmark**
+**https://huggingface.co/datasets/microsoft/OfficeComprehensionBenchmark**
 
 This repository hosts the evaluation prompts, judge scripts, and the
 download/conversion utilities that materialize the URL-referenced
