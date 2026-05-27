@@ -33,9 +33,6 @@ export default function App() {
             <span>Microsoft</span>
           </div>
           <h1>{data.metadata.benchmark_name}</h1>
-          <div className="sub">
-            Version {data.metadata.version} · Updated {data.metadata.last_updated}
-          </div>
         </div>
       </header>
 
