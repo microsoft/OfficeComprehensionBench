@@ -1,0 +1,17 @@
+node_modules
+dist
+.env
+*.local
+.DS_Store
+Notes.txt
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Eval pipeline artifacts (live on main, not gh-pages)
+Input/
+Output/
+hf_ref/
+reference_files/
+tmp_html/
+eval_prompts.log

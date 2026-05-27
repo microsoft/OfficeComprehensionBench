@@ -1,0 +1,977 @@
+{
+  "metadata": {
+    "benchmark_name": "Office Comprehension Benchmark",
+    "version": "2.1",
+    "last_updated": "2026-05-27",
+    "description": "Auto-generated from variance_stats and aggregated_metrics JSONs",
+    "models": [
+      {
+        "id": "gemini_31_pro",
+        "display_name": "Gemini 3.1 Pro",
+        "org": "Google",
+        "color": "#aecde0"
+      },
+      {
+        "id": "claude_opus_47",
+        "display_name": "Claude Opus 4.7",
+        "org": "Anthropic",
+        "color": "#9a6bbf"
+      },
+      {
+        "id": "gpt55_think",
+        "display_name": "GPT 5.5 Thinking",
+        "org": "OpenAI",
+        "color": "#f0a04b"
+      }
+    ],
+    "industries": [
+      "Accounting",
+      "Corporate Governance",
+      "Educational Services",
+      "Energy",
+      "Finance",
+      "Government",
+      "Healthcare & Social Assistance",
+      "Information",
+      "Manufacturing",
+      "Supply Chain",
+      "Waste Management & Environmental Services",
+      "Wholesale/Retail Trade"
+    ],
+    "file_type_combos": [
+      {
+        "id": "W",
+        "label": "Word only"
+      },
+      {
+        "id": "X",
+        "label": "Excel only"
+      },
+      {
+        "id": "P",
+        "label": "PowerPoint only"
+      },
+      {
+        "id": "WX",
+        "label": "Word + Excel"
+      },
+      {
+        "id": "WP",
+        "label": "Word + PowerPoint"
+      }
+    ],
+    "fidelity_apps": [
+      "excel",
+      "powerpoint",
+      "word"
+    ],
+    "fidelity_sizes": [
+      "small",
+      "medium",
+      "long"
+    ],
+    "human_baselines": {
+      "domain_qna": null,
+      "fidelity_excel": 0.459,
+      "fidelity_powerpoint": 0.6827,
+      "fidelity_word": 0.786
+    }
+  },
+  "domain_qna": {
+    "main": {
+      "gemini_31_pro": {
+        "mean": 0.4575,
+        "ci_low": 0.4484,
+        "ci_high": 0.4666,
+        "n": 5414
+      },
+      "claude_opus_47": {
+        "mean": 0.5683,
+        "ci_low": 0.5622,
+        "ci_high": 0.5744,
+        "n": 5414
+      },
+      "gpt55_think": {
+        "mean": 0.5935,
+        "ci_low": 0.5824,
+        "ci_high": 0.6046,
+        "n": 5414
+      }
+    },
+    "ablations": {
+      "gpt55_modes": [
+        {
+          "id": "thinkinglight",
+          "label": "Thinking - Light"
+        },
+        {
+          "id": "thinkingstandard",
+          "label": "Thinking - Standard"
+        },
+        {
+          "id": "thinkingextended",
+          "label": "Thinking - Extended"
+        },
+        {
+          "id": "thinkingheavy",
+          "label": "Thinking - Heavy"
+        },
+        {
+          "id": "prostandard",
+          "label": "Pro - Standard"
+        },
+        {
+          "id": "proextended",
+          "label": "Pro - Extended"
+        }
+      ],
+      "claude47_modes": [
+        {
+          "id": "standardthinking",
+          "label": "Standard Thinking"
+        },
+        {
+          "id": "adaptivethinking",
+          "label": "Adaptive Thinking"
+        }
+      ],
+      "gpt55_think": {
+        "proextended": {
+          "mean": 0.6309,
+          "ci_low": 0.5952,
+          "ci_high": 0.6666
+        },
+        "prostandard": {
+          "mean": 0.6155,
+          "ci_low": 0.6076,
+          "ci_high": 0.6234
+        },
+        "thinkingextended": {
+          "mean": 0.5979,
+          "ci_low": 0.5895,
+          "ci_high": 0.6063
+        },
+        "thinkingheavy": {
+          "mean": 0.5981,
+          "ci_low": 0.5904,
+          "ci_high": 0.6058
+        },
+        "thinkinglight": {
+          "mean": 0.5911,
+          "ci_low": 0.5604,
+          "ci_high": 0.6218
+        },
+        "thinkingstandard": {
+          "mean": 0.5935,
+          "ci_low": 0.5824,
+          "ci_high": 0.6046
+        }
+      },
+      "claude_opus_47": {
+        "adaptivethinking": {
+          "mean": 0.5893,
+          "ci_low": 0.5688,
+          "ci_high": 0.6098
+        },
+        "standardthinking": {
+          "mean": 0.5683,
+          "ci_low": 0.5622,
+          "ci_high": 0.5744
+        }
+      }
+    },
+    "by_industry": {
+      "Accounting": {
+        "n_queries": 15,
+        "n_assertions": 786,
+        "gemini_31_pro": {
+          "mean": 0.3739,
+          "ci_low": 0.3188,
+          "ci_high": 0.429
+        },
+        "claude_opus_47": {
+          "mean": 0.518,
+          "ci_low": 0.5019,
+          "ci_high": 0.534
+        },
+        "gpt55_think": {
+          "mean": 0.4685,
+          "ci_low": 0.4214,
+          "ci_high": 0.5155
+        }
+      },
+      "Corporate Governance": {
+        "n_queries": 6,
+        "n_assertions": 170,
+        "gemini_31_pro": {
+          "mean": 0.3268,
+          "ci_low": 0.2577,
+          "ci_high": 0.3959
+        },
+        "claude_opus_47": {
+          "mean": 0.4562,
+          "ci_low": 0.4294,
+          "ci_high": 0.483
+        },
+        "gpt55_think": {
+          "mean": 0.5706,
+          "ci_low": 0.541,
+          "ci_high": 0.6002
+        }
+      },
+      "Educational Services": {
+        "n_queries": 8,
+        "n_assertions": 234,
+        "gemini_31_pro": {
+          "mean": 0.5337,
+          "ci_low": 0.4275,
+          "ci_high": 0.64
+        },
+        "claude_opus_47": {
+          "mean": 0.5831,
+          "ci_low": 0.5603,
+          "ci_high": 0.6058
+        },
+        "gpt55_think": {
+          "mean": 0.6049,
+          "ci_low": 0.574,
+          "ci_high": 0.6359
+        }
+      },
+      "Energy": {
+        "n_queries": 6,
+        "n_assertions": 139,
+        "gemini_31_pro": {
+          "mean": 0.5779,
+          "ci_low": 0.533,
+          "ci_high": 0.6229
+        },
+        "claude_opus_47": {
+          "mean": 0.6483,
+          "ci_low": 0.6044,
+          "ci_high": 0.6922
+        },
+        "gpt55_think": {
+          "mean": 0.6235,
+          "ci_low": 0.563,
+          "ci_high": 0.684
+        }
+      },
+      "Finance": {
+        "n_queries": 15,
+        "n_assertions": 707,
+        "gemini_31_pro": {
+          "mean": 0.5028,
+          "ci_low": 0.4767,
+          "ci_high": 0.5288
+        },
+        "claude_opus_47": {
+          "mean": 0.4642,
+          "ci_low": 0.3916,
+          "ci_high": 0.5369
+        },
+        "gpt55_think": {
+          "mean": 0.5699,
+          "ci_low": 0.528,
+          "ci_high": 0.6117
+        }
+      },
+      "Government": {
+        "n_queries": 8,
+        "n_assertions": 332,
+        "gemini_31_pro": {
+          "mean": 0.4629,
+          "ci_low": 0.4212,
+          "ci_high": 0.5045
+        },
+        "claude_opus_47": {
+          "mean": 0.6456,
+          "ci_low": 0.5545,
+          "ci_high": 0.7366
+        },
+        "gpt55_think": {
+          "mean": 0.5897,
+          "ci_low": 0.5646,
+          "ci_high": 0.6148
+        }
+      },
+      "Healthcare & Social Assistance": {
+        "n_queries": 13,
+        "n_assertions": 324,
+        "gemini_31_pro": {
+          "mean": 0.5586,
+          "ci_low": 0.4929,
+          "ci_high": 0.6243
+        },
+        "claude_opus_47": {
+          "mean": 0.7713,
+          "ci_low": 0.7597,
+          "ci_high": 0.7828
+        },
+        "gpt55_think": {
+          "mean": 0.7442,
+          "ci_low": 0.725,
+          "ci_high": 0.7634
+        }
+      },
+      "Information": {
+        "n_queries": 12,
+        "n_assertions": 376,
+        "gemini_31_pro": {
+          "mean": 0.4412,
+          "ci_low": 0.3966,
+          "ci_high": 0.4857
+        },
+        "claude_opus_47": {
+          "mean": 0.6176,
+          "ci_low": 0.5901,
+          "ci_high": 0.6451
+        },
+        "gpt55_think": {
+          "mean": 0.646,
+          "ci_low": 0.6081,
+          "ci_high": 0.6839
+        }
+      },
+      "Manufacturing": {
+        "n_queries": 10,
+        "n_assertions": 1171,
+        "gemini_31_pro": {
+          "mean": 0.427,
+          "ci_low": 0.3871,
+          "ci_high": 0.4669
+        },
+        "claude_opus_47": {
+          "mean": 0.5814,
+          "ci_low": 0.5197,
+          "ci_high": 0.6431
+        },
+        "gpt55_think": {
+          "mean": 0.5834,
+          "ci_low": 0.5627,
+          "ci_high": 0.604
+        }
+      },
+      "Supply Chain": {
+        "n_queries": 6,
+        "n_assertions": 473,
+        "gemini_31_pro": {
+          "mean": 0.3439,
+          "ci_low": 0.2981,
+          "ci_high": 0.3897
+        },
+        "claude_opus_47": {
+          "mean": 0.4724,
+          "ci_low": 0.3301,
+          "ci_high": 0.6147
+        },
+        "gpt55_think": {
+          "mean": 0.4576,
+          "ci_low": 0.4397,
+          "ci_high": 0.4755
+        }
+      },
+      "Waste Management & Environmental Services": {
+        "n_queries": 15,
+        "n_assertions": 452,
+        "gemini_31_pro": {
+          "mean": 0.547,
+          "ci_low": 0.4846,
+          "ci_high": 0.6093
+        },
+        "claude_opus_47": {
+          "mean": 0.5396,
+          "ci_low": 0.4527,
+          "ci_high": 0.6265
+        },
+        "gpt55_think": {
+          "mean": 0.7741,
+          "ci_low": 0.7649,
+          "ci_high": 0.7833
+        }
+      },
+      "Wholesale/Retail Trade": {
+        "n_queries": 6,
+        "n_assertions": 250,
+        "gemini_31_pro": {
+          "mean": 0.6253,
+          "ci_low": 0.6069,
+          "ci_high": 0.6438
+        },
+        "claude_opus_47": {
+          "mean": 0.7711,
+          "ci_low": 0.7363,
+          "ci_high": 0.8059
+        },
+        "gpt55_think": {
+          "mean": 0.7502,
+          "ci_low": 0.7377,
+          "ci_high": 0.7628
+        }
+      }
+    },
+    "by_file_type": {
+      "P": {
+        "n_queries": 41,
+        "n_assertions": 2382,
+        "gemini_31_pro": {
+          "mean": 0.4216,
+          "ci_low": 0.4018,
+          "ci_high": 0.4415
+        },
+        "claude_opus_47": {
+          "mean": 0.5913,
+          "ci_low": 0.5844,
+          "ci_high": 0.5982
+        },
+        "gpt55_think": {
+          "mean": 0.5968,
+          "ci_low": 0.5866,
+          "ci_high": 0.6071
+        }
+      },
+      "W": {
+        "n_queries": 35,
+        "n_assertions": 1317,
+        "gemini_31_pro": {
+          "mean": 0.5412,
+          "ci_low": 0.5076,
+          "ci_high": 0.5749
+        },
+        "claude_opus_47": {
+          "mean": 0.5568,
+          "ci_low": 0.5388,
+          "ci_high": 0.5749
+        },
+        "gpt55_think": {
+          "mean": 0.6731,
+          "ci_low": 0.6647,
+          "ci_high": 0.6814
+        }
+      },
+      "WP": {
+        "n_queries": 7,
+        "n_assertions": 424,
+        "gemini_31_pro": {
+          "mean": 0.5254,
+          "ci_low": 0.4859,
+          "ci_high": 0.565
+        },
+        "claude_opus_47": {
+          "mean": 0.6441,
+          "ci_low": 0.5367,
+          "ci_high": 0.7515
+        },
+        "gpt55_think": {
+          "mean": 0.6709,
+          "ci_low": 0.6466,
+          "ci_high": 0.6951
+        }
+      },
+      "WX": {
+        "n_queries": 8,
+        "n_assertions": 377,
+        "gemini_31_pro": {
+          "mean": 0.3266,
+          "ci_low": 0.2206,
+          "ci_high": 0.4325
+        },
+        "claude_opus_47": {
+          "mean": 0.4892,
+          "ci_low": 0.4456,
+          "ci_high": 0.5329
+        },
+        "gpt55_think": {
+          "mean": 0.42,
+          "ci_low": 0.3045,
+          "ci_high": 0.5355
+        }
+      },
+      "X": {
+        "n_queries": 29,
+        "n_assertions": 914,
+        "gemini_31_pro": {
+          "mean": 0.4528,
+          "ci_low": 0.4368,
+          "ci_high": 0.4688
+        },
+        "claude_opus_47": {
+          "mean": 0.5224,
+          "ci_low": 0.5203,
+          "ci_high": 0.5245
+        },
+        "gpt55_think": {
+          "mean": 0.5057,
+          "ci_low": 0.4926,
+          "ci_high": 0.5189
+        }
+      }
+    }
+  },
+  "file_fidelity": {
+    "human_baseline": {
+      "excel": 0.459,
+      "powerpoint": 0.6827,
+      "word": 0.786
+    },
+    "excel": {
+      "main": {
+        "gemini_31_pro": {
+          "score": 0.6102,
+          "n": 508
+        },
+        "claude_opus_47": {
+          "score": 0.7106,
+          "n": 508
+        },
+        "gpt55_think": {
+          "score": 0.7264,
+          "n": 508
+        }
+      },
+      "by_feature": {
+        "Chart": {
+          "n_queries": 9,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.5714,
+          "claude_opus_47": 0.7857,
+          "gpt55_think": 0.8571
+        },
+        "Formula": {
+          "n_queries": 15,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.44,
+          "claude_opus_47": 0.76,
+          "gpt55_think": 0.8
+        },
+        "Image": {
+          "n_queries": 6,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.8571
+        },
+        "Other": {
+          "n_queries": 1,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "PivotTable": {
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.8,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Shape": {
+          "n_queries": 1,
+          "n_assertions": 1,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.0
+        },
+        "Sheet": {
+          "n_queries": 9,
+          "n_assertions": 17,
+          "gemini_31_pro": 0.9412,
+          "claude_opus_47": 0.8824,
+          "gpt55_think": 1.0
+        },
+        "TLR": {
+          "n_queries": 133,
+          "n_assertions": 215,
+          "gemini_31_pro": 0.5279,
+          "claude_opus_47": 0.5767,
+          "gpt55_think": 0.5488
+        },
+        "Table": {
+          "n_queries": 72,
+          "n_assertions": 151,
+          "gemini_31_pro": 0.7815,
+          "claude_opus_47": 0.8146,
+          "gpt55_think": 0.8609
+        },
+        "Unstructured data": {
+          "n_queries": 30,
+          "n_assertions": 64,
+          "gemini_31_pro": 0.7656,
+          "claude_opus_47": 0.8594,
+          "gpt55_think": 0.8281
+        }
+      },
+      "by_size": {
+        "long": {
+          "n_queries": 12,
+          "n_assertions": 26,
+          "gemini_31_pro": 0.8462,
+          "claude_opus_47": 0.9615,
+          "gpt55_think": 0.9231
+        },
+        "medium": {
+          "n_queries": 84,
+          "n_assertions": 149,
+          "gemini_31_pro": 0.7181,
+          "claude_opus_47": 0.8121,
+          "gpt55_think": 0.8859
+        },
+        "small": {
+          "n_queries": 185,
+          "n_assertions": 333,
+          "gemini_31_pro": 0.5746,
+          "claude_opus_47": 0.6456,
+          "gpt55_think": 0.6396
+        }
+      }
+    },
+    "powerpoint": {
+      "main": {
+        "gemini_31_pro": {
+          "score": 0.6492,
+          "n": 305
+        },
+        "claude_opus_47": {
+          "score": 0.8656,
+          "n": 305
+        },
+        "gpt55_think": {
+          "score": 0.859,
+          "n": 305
+        }
+      },
+      "by_feature": {
+        "Animations": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Chart": {
+          "n_queries": 13,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.3571,
+          "claude_opus_47": 0.8571,
+          "gpt55_think": 0.7692
+        },
+        "Equation (or Symbol)": {
+          "n_queries": 7,
+          "n_assertions": 9,
+          "gemini_31_pro": 0.5556,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.7778
+        },
+        "Header/Footer/SlideNum/DateTime": {
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.4,
+          "claude_opus_47": 0.8,
+          "gpt55_think": 0.6
+        },
+        "Hyperlink": {
+          "n_queries": 5,
+          "n_assertions": 7,
+          "gemini_31_pro": 0.8571,
+          "claude_opus_47": 0.8571,
+          "gpt55_think": 0.8571
+        },
+        "Icons": {
+          "n_queries": 1,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Image": {
+          "n_queries": 20,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.52,
+          "claude_opus_47": 0.92,
+          "gpt55_think": 0.9167
+        },
+        "Ink": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.6667,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.3333
+        },
+        "Language": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Metadata": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.3333,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.6667
+        },
+        "Position/Association/Grouping": {
+          "n_queries": 38,
+          "n_assertions": 48,
+          "gemini_31_pro": 0.7292,
+          "claude_opus_47": 0.8542,
+          "gpt55_think": 0.875
+        },
+        "Section": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.5
+        },
+        "Shape / Text": {
+          "n_queries": 7,
+          "n_assertions": 9,
+          "gemini_31_pro": 0.2222,
+          "claude_opus_47": 0.6667,
+          "gpt55_think": 0.5556
+        },
+        "Shapes / Type & Color": {
+          "n_queries": 3,
+          "n_assertions": 4,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Slide Note": {
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.6,
+          "gpt55_think": 0.8
+        },
+        "Slide Properties - Hidden": {
+          "n_queries": 2,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.6667,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.6667
+        },
+        "Slide Text": {
+          "n_queries": 79,
+          "n_assertions": 111,
+          "gemini_31_pro": 0.7838,
+          "claude_opus_47": 0.8468,
+          "gpt55_think": 0.9009
+        },
+        "SmartArt / Semantics": {
+          "n_queries": 2,
+          "n_assertions": 3,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "SmartArt / Type & Text": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.5
+        },
+        "Tables / Cell color coding": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Tables / Values": {
+          "n_queries": 20,
+          "n_assertions": 22,
+          "gemini_31_pro": 0.4091,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.8636
+        },
+        "Text Highlight": {
+          "n_queries": 13,
+          "n_assertions": 20,
+          "gemini_31_pro": 0.7,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Video": {
+          "n_queries": 1,
+          "n_assertions": 1,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        }
+      },
+      "by_size": {
+        "long": {
+          "n_queries": 110,
+          "n_assertions": 141,
+          "gemini_31_pro": 0.6099,
+          "claude_opus_47": 0.8652,
+          "gpt55_think": 0.8511
+        },
+        "medium": {
+          "n_queries": 104,
+          "n_assertions": 133,
+          "gemini_31_pro": 0.6992,
+          "claude_opus_47": 0.8647,
+          "gpt55_think": 0.8647
+        },
+        "small": {
+          "n_queries": 24,
+          "n_assertions": 31,
+          "gemini_31_pro": 0.6129,
+          "claude_opus_47": 0.871,
+          "gpt55_think": 0.871
+        }
+      }
+    },
+    "word": {
+      "main": {
+        "gemini_31_pro": {
+          "score": 0.5528,
+          "n": 492
+        },
+        "claude_opus_47": {
+          "score": 0.9146,
+          "n": 492
+        },
+        "gpt55_think": {
+          "score": 0.687,
+          "n": 492
+        }
+      },
+      "by_feature": {
+        "Comment": {
+          "n_queries": 11,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.75
+        },
+        "Equation": {
+          "n_queries": 10,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.8333,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.5833
+        },
+        "Font": {
+          "n_queries": 29,
+          "n_assertions": 35,
+          "gemini_31_pro": 0.1429,
+          "claude_opus_47": 0.9714,
+          "gpt55_think": 0.1714
+        },
+        "Footer": {
+          "n_queries": 13,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.8,
+          "gpt55_think": 0.36
+        },
+        "Footnote": {
+          "n_queries": 16,
+          "n_assertions": 46,
+          "gemini_31_pro": 0.2826,
+          "claude_opus_47": 0.8696,
+          "gpt55_think": 0.8913
+        },
+        "Header": {
+          "n_queries": 11,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 0.75,
+          "gpt55_think": 0.1667
+        },
+        "Highlight": {
+          "n_queries": 14,
+          "n_assertions": 24,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 0.5417,
+          "gpt55_think": 0.5
+        },
+        "Hyperlink": {
+          "n_queries": 18,
+          "n_assertions": 18,
+          "gemini_31_pro": 0.1111,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.0556
+        },
+        "Layout": {
+          "n_queries": 18,
+          "n_assertions": 21,
+          "gemini_31_pro": 0.0952,
+          "claude_opus_47": 0.9048,
+          "gpt55_think": 0.2857
+        },
+        "Metadata": {
+          "n_queries": 17,
+          "n_assertions": 18,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.4444,
+          "gpt55_think": 0.0556
+        },
+        "Strikeout": {
+          "n_queries": 10,
+          "n_assertions": 10,
+          "gemini_31_pro": 0.4,
+          "claude_opus_47": 0.9,
+          "gpt55_think": 0.4
+        },
+        "Table": {
+          "n_queries": 143,
+          "n_assertions": 172,
+          "gemini_31_pro": 0.9012,
+          "claude_opus_47": 0.9942,
+          "gpt55_think": 0.9593
+        },
+        "Text": {
+          "n_queries": 62,
+          "n_assertions": 70,
+          "gemini_31_pro": 0.9571,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Textbox": {
+          "n_queries": 9,
+          "n_assertions": 15,
+          "gemini_31_pro": 0.5333,
+          "claude_opus_47": 0.9333,
+          "gpt55_think": 0.2667
+        },
+        "Video": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.5
+        }
+      },
+      "by_size": {
+        "long": {
+          "n_queries": 56,
+          "n_assertions": 77,
+          "gemini_31_pro": 0.3247,
+          "claude_opus_47": 0.8831,
+          "gpt55_think": 0.3896
+        },
+        "medium": {
+          "n_queries": 77,
+          "n_assertions": 105,
+          "gemini_31_pro": 0.2667,
+          "claude_opus_47": 0.8095,
+          "gpt55_think": 0.4762
+        },
+        "small": {
+          "n_queries": 250,
+          "n_assertions": 310,
+          "gemini_31_pro": 0.7065,
+          "claude_opus_47": 0.9581,
+          "gpt55_think": 0.8323
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "benchmark_name": "Office Comprehension Benchmark",
+    "version": "2.0",
+    "last_updated": "2026-05-27",
+    "models": [
+      { "id": "gemini_31_pro",  "display_name": "Gemini 3.1 Pro",   "org": "Google",    "color": "#aecde0" },
+      { "id": "claude_opus_47", "display_name": "Claude Opus 4.7",  "org": "Anthropic", "color": "#9a6bbf" },
+      { "id": "gpt55_think",    "display_name": "GPT 5.5 Thinking", "org": "OpenAI",    "color": "#f0a04b" }
+    ],
+    "industries": [
+      "Accounting",
+      "Corporate Governance",
+      "Educational Services",
+      "Energy",
+      "Finance",
+      "Government",
+      "Healthcare & Social Assistance",
+      "Information",
+      "Manufacturing",
+      "Supply Chain",
+      "Waste Management & Environmental Services",
+      "Wholesale/Retail Trade"
+    ],
+    "file_type_combos": [
+      { "id": "WXP", "label": "Word + Excel + PowerPoint" },
+      { "id": "WX",  "label": "Word + Excel" },
+      { "id": "WP",  "label": "Word + PowerPoint" }
+    ],
+    "fidelity_apps": ["word", "powerpoint", "excel"],
+    "fidelity_sizes": ["small", "medium", "long"]
+  },
+
+  "domain_qna": {
+    "main": {
+      "gemini_31_pro":  { "mean": 0.460, "ci_low": 0.441, "ci_high": 0.479, "n": 5414 },
+      "claude_opus_47": { "mean": 0.573, "ci_low": 0.555, "ci_high": 0.591, "n": 5414 },
+      "gpt55_think":    { "mean": 0.593, "ci_low": 0.575, "ci_high": 0.611, "n": 5414 }
+    },
+
+    "ablations": {
+      "modes": [
+        { "id": "thinking_light",    "label": "Thinking — Light" },
+        { "id": "thinking_standard", "label": "Thinking — Standard" },
+        { "id": "thinking_extended", "label": "Thinking — Extended" },
+        { "id": "thinking_heavy",    "label": "Thinking — Heavy" },
+        { "id": "pro_standard",      "label": "Pro — Standard" },
+        { "id": "pro_extended",      "label": "Pro — Extended" }
+      ],
+      "gpt55_think": {
+        "thinking_light":    { "mean": 0.512, "ci_low": 0.493, "ci_high": 0.531 },
+        "thinking_standard": { "mean": 0.593, "ci_low": 0.575, "ci_high": 0.611 },
+        "thinking_extended": { "mean": 0.621, "ci_low": 0.603, "ci_high": 0.639 },
+        "thinking_heavy":    { "mean": 0.638, "ci_low": 0.620, "ci_high": 0.656 }
+      },
+      "claude_opus_47": {
+        "thinking_standard": { "mean": 0.573, "ci_low": 0.555, "ci_high": 0.591 },
+        "thinking_extended": { "mean": 0.602, "ci_low": 0.584, "ci_high": 0.620 }
+      }
+    },
+
+    "by_industry": {
+      "Accounting":                                  { "gemini_31_pro": { "mean": 0.38, "ci_low": 0.33, "ci_high": 0.43, "n": 420 }, "claude_opus_47": { "mean": 0.52, "ci_low": 0.47, "ci_high": 0.57, "n": 420 }, "gpt55_think": { "mean": 0.44, "ci_low": 0.39, "ci_high": 0.49, "n": 420 } },
+      "Corporate Governance":                        { "gemini_31_pro": { "mean": 0.34, "ci_low": 0.29, "ci_high": 0.39, "n": 410 }, "claude_opus_47": { "mean": 0.44, "ci_low": 0.39, "ci_high": 0.49, "n": 410 }, "gpt55_think": { "mean": 0.54, "ci_low": 0.49, "ci_high": 0.59, "n": 410 } },
+      "Educational Services":                        { "gemini_31_pro": { "mean": 0.55, "ci_low": 0.50, "ci_high": 0.60, "n": 430 }, "claude_opus_47": { "mean": 0.59, "ci_low": 0.54, "ci_high": 0.64, "n": 430 }, "gpt55_think": { "mean": 0.61, "ci_low": 0.56, "ci_high": 0.66, "n": 430 } },
+      "Energy":                                      { "gemini_31_pro": { "mean": 0.60, "ci_low": 0.55, "ci_high": 0.65, "n": 460 }, "claude_opus_47": { "mean": 0.68, "ci_low": 0.63, "ci_high": 0.73, "n": 460 }, "gpt55_think": { "mean": 0.62, "ci_low": 0.57, "ci_high": 0.67, "n": 460 } },
+      "Finance":                                     { "gemini_31_pro": { "mean": 0.50, "ci_low": 0.45, "ci_high": 0.55, "n": 470 }, "claude_opus_47": { "mean": 0.47, "ci_low": 0.42, "ci_high": 0.52, "n": 470 }, "gpt55_think": { "mean": 0.56, "ci_low": 0.51, "ci_high": 0.61, "n": 470 } },
+      "Government":                                  { "gemini_31_pro": { "mean": 0.46, "ci_low": 0.41, "ci_high": 0.51, "n": 440 }, "claude_opus_47": { "mean": 0.65, "ci_low": 0.60, "ci_high": 0.70, "n": 440 }, "gpt55_think": { "mean": 0.60, "ci_low": 0.55, "ci_high": 0.65, "n": 440 } },
+      "Healthcare & Social Assistance":              { "gemini_31_pro": { "mean": 0.57, "ci_low": 0.52, "ci_high": 0.62, "n": 480 }, "claude_opus_47": { "mean": 0.78, "ci_low": 0.73, "ci_high": 0.83, "n": 480 }, "gpt55_think": { "mean": 0.77, "ci_low": 0.72, "ci_high": 0.82, "n": 480 } },
+      "Information":                                 { "gemini_31_pro": { "mean": 0.45, "ci_low": 0.40, "ci_high": 0.50, "n": 450 }, "claude_opus_47": { "mean": 0.64, "ci_low": 0.59, "ci_high": 0.69, "n": 450 }, "gpt55_think": { "mean": 0.64, "ci_low": 0.59, "ci_high": 0.69, "n": 450 } },
+      "Manufacturing":                               { "gemini_31_pro": { "mean": 0.42, "ci_low": 0.37, "ci_high": 0.47, "n": 460 }, "claude_opus_47": { "mean": 0.58, "ci_low": 0.53, "ci_high": 0.63, "n": 460 }, "gpt55_think": { "mean": 0.59, "ci_low": 0.54, "ci_high": 0.64, "n": 460 } },
+      "Supply Chain":                                { "gemini_31_pro": { "mean": 0.34, "ci_low": 0.29, "ci_high": 0.39, "n": 400 }, "claude_opus_47": { "mean": 0.47, "ci_low": 0.42, "ci_high": 0.52, "n": 400 }, "gpt55_think": { "mean": 0.46, "ci_low": 0.41, "ci_high": 0.51, "n": 400 } },
+      "Waste Management & Environmental Services":   { "gemini_31_pro": { "mean": 0.56, "ci_low": 0.50, "ci_high": 0.62, "n": 380 }, "claude_opus_47": { "mean": 0.56, "ci_low": 0.50, "ci_high": 0.62, "n": 380 }, "gpt55_think": { "mean": 0.79, "ci_low": 0.74, "ci_high": 0.84, "n": 380 } },
+      "Wholesale/Retail Trade":                      { "gemini_31_pro": { "mean": 0.63, "ci_low": 0.58, "ci_high": 0.68, "n": 414 }, "claude_opus_47": { "mean": 0.78, "ci_low": 0.73, "ci_high": 0.83, "n": 414 }, "gpt55_think": { "mean": 0.76, "ci_low": 0.71, "ci_high": 0.81, "n": 414 } }
+    },
+
+    "by_file_type": {
+      "WXP": { "gemini_31_pro": { "mean": 0.41, "ci_low": 0.38, "ci_high": 0.44, "n": 1800 }, "claude_opus_47": { "mean": 0.56, "ci_low": 0.53, "ci_high": 0.59, "n": 1800 }, "gpt55_think": { "mean": 0.53, "ci_low": 0.50, "ci_high": 0.56, "n": 1800 } },
+      "WX":  { "gemini_31_pro": { "mean": 0.47, "ci_low": 0.44, "ci_high": 0.50, "n": 1750 }, "claude_opus_47": { "mean": 0.58, "ci_low": 0.55, "ci_high": 0.61, "n": 1750 }, "gpt55_think": { "mean": 0.61, "ci_low": 0.58, "ci_high": 0.64, "n": 1750 } },
+      "WP":  { "gemini_31_pro": { "mean": 0.49, "ci_low": 0.46, "ci_high": 0.52, "n": 1864 }, "claude_opus_47": { "mean": 0.59, "ci_low": 0.56, "ci_high": 0.62, "n": 1864 }, "gpt55_think": { "mean": 0.62, "ci_low": 0.59, "ci_high": 0.65, "n": 1864 } }
+    }
+  },
+
+  "file_fidelity": {
+    "human_baseline": {
+      "word":       0.95,
+      "powerpoint": 0.93,
+      "excel":      0.89
+    },
+
+    "word": {
+      "main": {
+        "gemini_31_pro":  { "score": 0.551, "n": 492 },
+        "claude_opus_47": { "score": 0.915, "n": 492 },
+        "gpt55_think":    { "score": 0.687, "n": 492 }
+      },
+      "by_feature": {
+        "Comment":   { "gemini_31_pro": 0.08, "claude_opus_47": 1.00, "gpt55_think": 0.75 },
+        "Equation":  { "gemini_31_pro": 0.83, "claude_opus_47": 1.00, "gpt55_think": 0.67 },
+        "Font":      { "gemini_31_pro": 0.14, "claude_opus_47": 0.97, "gpt55_think": 0.17 },
+        "Footer":    { "gemini_31_pro": null, "claude_opus_47": 0.80, "gpt55_think": 0.36 },
+        "Footnote":  { "gemini_31_pro": 0.28, "claude_opus_47": 0.87, "gpt55_think": 0.89 },
+        "Header":    { "gemini_31_pro": 0.08, "claude_opus_47": 0.83, "gpt55_think": 0.17 },
+        "Highlight": { "gemini_31_pro": 0.08, "claude_opus_47": 0.54, "gpt55_think": 0.50 },
+        "Hyperlink": { "gemini_31_pro": 0.11, "claude_opus_47": 1.00, "gpt55_think": 0.06 },
+        "Strikeout": { "gemini_31_pro": 0.40, "claude_opus_47": 0.90, "gpt55_think": 0.40 },
+        "Table":     { "gemini_31_pro": 0.90, "claude_opus_47": 0.99, "gpt55_think": 0.96 },
+        "Text":      { "gemini_31_pro": 0.96, "claude_opus_47": 1.00, "gpt55_think": 1.00 }
+      },
+      "by_size": {
+        "small":  { "gemini_31_pro": 0.70, "claude_opus_47": 0.96, "gpt55_think": 0.83 },
+        "medium": { "gemini_31_pro": 0.27, "claude_opus_47": 0.80, "gpt55_think": 0.49 },
+        "long":   { "gemini_31_pro": 0.32, "claude_opus_47": 0.90, "gpt55_think": 0.39 }
+      }
+    },
+
+    "powerpoint": {
+      "main": {
+        "gemini_31_pro":  { "score": 0.639, "n": 305 },
+        "claude_opus_47": { "score": 0.859, "n": 305 },
+        "gpt55_think":    { "score": 0.833, "n": 305 }
+      },
+      "by_feature": {
+        "Layout":    { "gemini_31_pro": 0.10, "claude_opus_47": 0.86, "gpt55_think": 0.29 },
+        "Textbox":   { "gemini_31_pro": 0.53, "claude_opus_47": 0.93, "gpt55_think": 0.27 },
+        "Image":     { "gemini_31_pro": 0.60, "claude_opus_47": 0.88, "gpt55_think": 0.72 },
+        "Video":     { "gemini_31_pro": 1.00, "claude_opus_47": 0.50, "gpt55_think": null },
+        "Table":     { "gemini_31_pro": 0.85, "claude_opus_47": 0.97, "gpt55_think": 0.91 },
+        "Text":      { "gemini_31_pro": 0.95, "claude_opus_47": 1.00, "gpt55_think": 0.98 },
+        "Hyperlink": { "gemini_31_pro": 0.45, "claude_opus_47": 0.96, "gpt55_think": 0.40 },
+        "Font":      { "gemini_31_pro": 0.30, "claude_opus_47": 0.92, "gpt55_think": 0.55 }
+      },
+      "by_size": {
+        "small":  { "gemini_31_pro": 0.72, "claude_opus_47": 0.92, "gpt55_think": 0.88 },
+        "medium": { "gemini_31_pro": 0.61, "claude_opus_47": 0.85, "gpt55_think": 0.82 },
+        "long":   { "gemini_31_pro": 0.54, "claude_opus_47": 0.81, "gpt55_think": 0.79 }
+      }
+    },
+
+    "excel": {
+      "main": {
+        "gemini_31_pro":  { "score": 0.595, "n": 508 },
+        "claude_opus_47": { "score": 0.695, "n": 508 },
+        "gpt55_think":    { "score": 0.711, "n": 508 }
+      },
+      "by_feature": {
+        "Formula":            { "gemini_31_pro": 0.55, "claude_opus_47": 0.72, "gpt55_think": 0.74 },
+        "Chart":              { "gemini_31_pro": 0.40, "claude_opus_47": 0.66, "gpt55_think": 0.68 },
+        "PivotTable":         { "gemini_31_pro": 0.32, "claude_opus_47": 0.58, "gpt55_think": 0.61 },
+        "Conditional Format": { "gemini_31_pro": 0.48, "claude_opus_47": 0.71, "gpt55_think": 0.69 },
+        "Named Range":        { "gemini_31_pro": 0.51, "claude_opus_47": 0.74, "gpt55_think": 0.72 },
+        "Table":              { "gemini_31_pro": 0.78, "claude_opus_47": 0.88, "gpt55_think": 0.90 },
+        "Filter":             { "gemini_31_pro": 0.60, "claude_opus_47": 0.75, "gpt55_think": 0.78 },
+        "Validation":         { "gemini_31_pro": 0.42, "claude_opus_47": 0.63, "gpt55_think": 0.67 },
+        "Text":               { "gemini_31_pro": 0.85, "claude_opus_47": 0.93, "gpt55_think": 0.94 }
+      },
+      "by_size": {
+        "small":  { "gemini_31_pro": 0.55, "claude_opus_47": 0.62, "gpt55_think": 0.62 },
+        "medium": { "gemini_31_pro": 0.65, "claude_opus_47": 0.82, "gpt55_think": 0.87 },
+        "long":   { "gemini_31_pro": 0.58, "claude_opus_47": 0.71, "gpt55_think": 0.66 }
+      }
+    }
+  }
+}

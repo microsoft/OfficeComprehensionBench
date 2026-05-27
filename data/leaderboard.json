@@ -1,2104 +1,975 @@
 {
   "metadata": {
     "benchmark_name": "Office Comprehension Benchmark",
-    "version": "1.0",
-    "last_updated": "2026-05-07",
+    "version": "2.1",
+    "last_updated": "2026-05-27",
+    "description": "Auto-generated from variance_stats and aggregated_metrics JSONs",
     "models": [
-      {
-        "id": "claude_opus_47",
-        "display_name": "Claude Opus 4.7",
-        "org": "Anthropic",
-        "url": null
-      },
       {
         "id": "gemini_31_pro",
         "display_name": "Gemini 3.1 Pro",
         "org": "Google",
-        "url": null
+        "color": "#aecde0"
+      },
+      {
+        "id": "claude_opus_47",
+        "display_name": "Claude Opus 4.7",
+        "org": "Anthropic",
+        "color": "#9a6bbf"
       },
       {
         "id": "gpt55_think",
         "display_name": "GPT 5.5 Thinking",
         "org": "OpenAI",
-        "url": null
+        "color": "#f0a04b"
       }
-    ]
-  },
-  "stats": {
-    "word": {
-      "num_queries": 383,
-      "num_assertions": 492,
-      "num_files": 78
-    },
-    "powerpoint": {
-      "num_queries": 238,
-      "num_assertions": 305,
-      "num_files": 46
-    },
-    "excel": {
-      "num_queries": 281,
-      "num_assertions": 508,
-      "num_files": 116
-    },
-    "domain_qna": {
-      "num_queries": 120,
-      "num_assertions": 5414,
-      "num_files": 64
-    },
-    "total": {
-      "num_queries": 1022,
-      "num_assertions": 6719,
-      "num_files": 304
-    }
-  },
-  "overall": {
-    "word": {
-      "claude_opus_47": {
-        "raw": 0.9146,
-        "percentage": 91.46
+    ],
+    "industries": [
+      "Accounting",
+      "Corporate Governance",
+      "Educational Services",
+      "Energy",
+      "Finance",
+      "Government",
+      "Healthcare & Social Assistance",
+      "Information",
+      "Manufacturing",
+      "Supply Chain",
+      "Waste Management & Environmental Services",
+      "Wholesale/Retail Trade"
+    ],
+    "file_type_combos": [
+      {
+        "id": "W",
+        "label": "Word only"
       },
-      "gemini_31_pro": {
-        "raw": 0.5508,
-        "percentage": 55.08
+      {
+        "id": "X",
+        "label": "Excel only"
       },
-      "gpt55_think": {
-        "raw": 0.687,
-        "percentage": 68.7
+      {
+        "id": "P",
+        "label": "PowerPoint only"
+      },
+      {
+        "id": "WX",
+        "label": "Word + Excel"
+      },
+      {
+        "id": "WP",
+        "label": "Word + PowerPoint"
       }
-    },
-    "powerpoint": {
-      "claude_opus_47": {
-        "raw": 0.859,
-        "percentage": 85.9
-      },
-      "gemini_31_pro": {
-        "raw": 0.6393,
-        "percentage": 63.93
-      },
-      "gpt55_think": {
-        "raw": 0.8328,
-        "percentage": 83.28
-      }
-    },
-    "excel": {
-      "claude_opus_47": {
-        "raw": 0.6949,
-        "percentage": 69.49
-      },
-      "gemini_31_pro": {
-        "raw": 0.5945,
-        "percentage": 59.45
-      },
-      "gpt55_think": {
-        "raw": 0.7106,
-        "percentage": 71.06
-      }
-    },
-    "multifile": {
-      "claude_opus_47": {
-        "raw": 0.5733,
-        "percentage": 57.33
-      },
-      "gemini_31_pro": {
-        "raw": 0.4595,
-        "percentage": 45.95
-      },
-      "gpt55_think": {
-        "raw": 0.5925,
-        "percentage": 59.25
-      }
-    },
-    "all_apps": {
-      "claude_opus_47": {
-        "raw": 0.7605,
-        "percentage": 76.05
-      },
-      "gemini_31_pro": {
-        "raw": 0.561,
-        "percentage": 56.1
-      },
-      "gpt55_think": {
-        "raw": 0.7057,
-        "percentage": 70.57
-      }
+    ],
+    "fidelity_apps": [
+      "excel",
+      "powerpoint",
+      "word"
+    ],
+    "fidelity_sizes": [
+      "small",
+      "medium",
+      "long"
+    ],
+    "human_baselines": {
+      "domain_qna": null,
+      "fidelity_excel": 0.459,
+      "fidelity_powerpoint": 0.6827,
+      "fidelity_word": 0.786
     }
   },
   "domain_qna": {
-    "overall": {
-      "word": {
-        "stats": {
-          "num_queries": 50,
-          "num_assertions": 2118,
-          "num_files": 47
+    "main": {
+      "gemini_31_pro": {
+        "mean": 0.4575,
+        "ci_low": 0.4484,
+        "ci_high": 0.4666,
+        "n": 5414
+      },
+      "claude_opus_47": {
+        "mean": 0.5683,
+        "ci_low": 0.5622,
+        "ci_high": 0.5744,
+        "n": 5414
+      },
+      "gpt55_think": {
+        "mean": 0.5935,
+        "ci_low": 0.5824,
+        "ci_high": 0.6046,
+        "n": 5414
+      }
+    },
+    "ablations": {
+      "gpt55_modes": [
+        {
+          "id": "thinkinglight",
+          "label": "Thinking - Light"
         },
-        "claude_opus_47": {
-          "raw": 0.5524,
-          "percentage": 55.24
+        {
+          "id": "thinkingstandard",
+          "label": "Thinking - Standard"
         },
-        "gemini_31_pro": {
-          "raw": 0.483,
-          "percentage": 48.3
+        {
+          "id": "thinkingextended",
+          "label": "Thinking - Extended"
         },
-        "gpt55_think": {
-          "raw": 0.6199,
-          "percentage": 61.99
+        {
+          "id": "thinkingheavy",
+          "label": "Thinking - Heavy"
+        },
+        {
+          "id": "prostandard",
+          "label": "Pro - Standard"
+        },
+        {
+          "id": "proextended",
+          "label": "Pro - Extended"
+        }
+      ],
+      "claude47_modes": [
+        {
+          "id": "standardthinking",
+          "label": "Standard Thinking"
+        },
+        {
+          "id": "adaptivethinking",
+          "label": "Adaptive Thinking"
+        }
+      ],
+      "gpt55_think": {
+        "proextended": {
+          "mean": 0.6309,
+          "ci_low": 0.5952,
+          "ci_high": 0.6666
+        },
+        "prostandard": {
+          "mean": 0.6155,
+          "ci_low": 0.6076,
+          "ci_high": 0.6234
+        },
+        "thinkingextended": {
+          "mean": 0.5979,
+          "ci_low": 0.5895,
+          "ci_high": 0.6063
+        },
+        "thinkingheavy": {
+          "mean": 0.5981,
+          "ci_low": 0.5904,
+          "ci_high": 0.6058
+        },
+        "thinkinglight": {
+          "mean": 0.5911,
+          "ci_low": 0.5604,
+          "ci_high": 0.6218
+        },
+        "thinkingstandard": {
+          "mean": 0.5935,
+          "ci_low": 0.5824,
+          "ci_high": 0.6046
         }
       },
-      "powerpoint": {
-        "stats": {
-          "num_queries": 48,
-          "num_assertions": 2806,
-          "num_files": 21
+      "claude_opus_47": {
+        "adaptivethinking": {
+          "mean": 0.5893,
+          "ci_low": 0.5688,
+          "ci_high": 0.6098
         },
-        "claude_opus_47": {
-          "raw": 0.5955,
-          "percentage": 59.55
-        },
-        "gemini_31_pro": {
-          "raw": 0.4398,
-          "percentage": 43.98
-        },
-        "gpt55_think": {
-          "raw": 0.6044,
-          "percentage": 60.44
-        }
-      },
-      "excel": {
-        "stats": {
-          "num_queries": 37,
-          "num_assertions": 1291,
-          "num_files": 12
-        },
-        "claude_opus_47": {
-          "raw": 0.5229,
-          "percentage": 52.29
-        },
-        "gemini_31_pro": {
-          "raw": 0.4074,
-          "percentage": 40.74
-        },
-        "gpt55_think": {
-          "raw": 0.4741,
-          "percentage": 47.41
-        }
-      },
-      "multifile": {
-        "stats": {
-          "num_queries": 15,
-          "num_assertions": 801,
-          "num_files": 16
-        },
-        "claude_opus_47": {
-          "raw": 0.5568,
-          "percentage": 55.68
-        },
-        "gemini_31_pro": {
-          "raw": 0.412,
-          "percentage": 41.2
-        },
-        "gpt55_think": {
-          "raw": 0.5256,
-          "percentage": 52.56
-        }
-      },
-      "all_apps": {
-        "stats": {
-          "num_queries": 120,
-          "num_assertions": 5414,
-          "num_files": 64
-        },
-        "claude_opus_47": {
-          "raw": 0.5733,
-          "percentage": 57.33,
+        "standardthinking": {
           "mean": 0.5683,
-          "mean_percentage": 56.83,
-          "std": 0.0024,
-          "std_percentage": 0.24
-        },
+          "ci_low": 0.5622,
+          "ci_high": 0.5744
+        }
+      }
+    },
+    "by_industry": {
+      "Accounting": {
+        "n_queries": 15,
+        "n_assertions": 786,
         "gemini_31_pro": {
-          "raw": 0.4595,
-          "percentage": 45.95,
-          "mean": 0.4575,
-          "mean_percentage": 45.75,
-          "std": 0.0034,
-          "std_percentage": 0.34
+          "mean": 0.3739,
+          "ci_low": 0.3188,
+          "ci_high": 0.429
+        },
+        "claude_opus_47": {
+          "mean": 0.518,
+          "ci_low": 0.5019,
+          "ci_high": 0.534
         },
         "gpt55_think": {
-          "raw": 0.5925,
-          "percentage": 59.25,
-          "mean": 0.5879,
-          "mean_percentage": 58.79,
-          "std": 0.0143,
-          "std_percentage": 1.44
+          "mean": 0.4685,
+          "ci_low": 0.4214,
+          "ci_high": 0.5155
+        }
+      },
+      "Corporate Governance": {
+        "n_queries": 6,
+        "n_assertions": 170,
+        "gemini_31_pro": {
+          "mean": 0.3268,
+          "ci_low": 0.2577,
+          "ci_high": 0.3959
+        },
+        "claude_opus_47": {
+          "mean": 0.4562,
+          "ci_low": 0.4294,
+          "ci_high": 0.483
+        },
+        "gpt55_think": {
+          "mean": 0.5706,
+          "ci_low": 0.541,
+          "ci_high": 0.6002
+        }
+      },
+      "Educational Services": {
+        "n_queries": 8,
+        "n_assertions": 234,
+        "gemini_31_pro": {
+          "mean": 0.5337,
+          "ci_low": 0.4275,
+          "ci_high": 0.64
+        },
+        "claude_opus_47": {
+          "mean": 0.5831,
+          "ci_low": 0.5603,
+          "ci_high": 0.6058
+        },
+        "gpt55_think": {
+          "mean": 0.6049,
+          "ci_low": 0.574,
+          "ci_high": 0.6359
+        }
+      },
+      "Energy": {
+        "n_queries": 6,
+        "n_assertions": 139,
+        "gemini_31_pro": {
+          "mean": 0.5779,
+          "ci_low": 0.533,
+          "ci_high": 0.6229
+        },
+        "claude_opus_47": {
+          "mean": 0.6483,
+          "ci_low": 0.6044,
+          "ci_high": 0.6922
+        },
+        "gpt55_think": {
+          "mean": 0.6235,
+          "ci_low": 0.563,
+          "ci_high": 0.684
+        }
+      },
+      "Finance": {
+        "n_queries": 15,
+        "n_assertions": 707,
+        "gemini_31_pro": {
+          "mean": 0.5028,
+          "ci_low": 0.4767,
+          "ci_high": 0.5288
+        },
+        "claude_opus_47": {
+          "mean": 0.4642,
+          "ci_low": 0.3916,
+          "ci_high": 0.5369
+        },
+        "gpt55_think": {
+          "mean": 0.5699,
+          "ci_low": 0.528,
+          "ci_high": 0.6117
+        }
+      },
+      "Government": {
+        "n_queries": 8,
+        "n_assertions": 332,
+        "gemini_31_pro": {
+          "mean": 0.4629,
+          "ci_low": 0.4212,
+          "ci_high": 0.5045
+        },
+        "claude_opus_47": {
+          "mean": 0.6456,
+          "ci_low": 0.5545,
+          "ci_high": 0.7366
+        },
+        "gpt55_think": {
+          "mean": 0.5897,
+          "ci_low": 0.5646,
+          "ci_high": 0.6148
+        }
+      },
+      "Healthcare & Social Assistance": {
+        "n_queries": 13,
+        "n_assertions": 324,
+        "gemini_31_pro": {
+          "mean": 0.5586,
+          "ci_low": 0.4929,
+          "ci_high": 0.6243
+        },
+        "claude_opus_47": {
+          "mean": 0.7713,
+          "ci_low": 0.7597,
+          "ci_high": 0.7828
+        },
+        "gpt55_think": {
+          "mean": 0.7442,
+          "ci_low": 0.725,
+          "ci_high": 0.7634
+        }
+      },
+      "Information": {
+        "n_queries": 12,
+        "n_assertions": 376,
+        "gemini_31_pro": {
+          "mean": 0.4412,
+          "ci_low": 0.3966,
+          "ci_high": 0.4857
+        },
+        "claude_opus_47": {
+          "mean": 0.6176,
+          "ci_low": 0.5901,
+          "ci_high": 0.6451
+        },
+        "gpt55_think": {
+          "mean": 0.646,
+          "ci_low": 0.6081,
+          "ci_high": 0.6839
+        }
+      },
+      "Manufacturing": {
+        "n_queries": 10,
+        "n_assertions": 1171,
+        "gemini_31_pro": {
+          "mean": 0.427,
+          "ci_low": 0.3871,
+          "ci_high": 0.4669
+        },
+        "claude_opus_47": {
+          "mean": 0.5814,
+          "ci_low": 0.5197,
+          "ci_high": 0.6431
+        },
+        "gpt55_think": {
+          "mean": 0.5834,
+          "ci_low": 0.5627,
+          "ci_high": 0.604
+        }
+      },
+      "Supply Chain": {
+        "n_queries": 6,
+        "n_assertions": 473,
+        "gemini_31_pro": {
+          "mean": 0.3439,
+          "ci_low": 0.2981,
+          "ci_high": 0.3897
+        },
+        "claude_opus_47": {
+          "mean": 0.4724,
+          "ci_low": 0.3301,
+          "ci_high": 0.6147
+        },
+        "gpt55_think": {
+          "mean": 0.4576,
+          "ci_low": 0.4397,
+          "ci_high": 0.4755
+        }
+      },
+      "Waste Management & Environmental Services": {
+        "n_queries": 15,
+        "n_assertions": 452,
+        "gemini_31_pro": {
+          "mean": 0.547,
+          "ci_low": 0.4846,
+          "ci_high": 0.6093
+        },
+        "claude_opus_47": {
+          "mean": 0.5396,
+          "ci_low": 0.4527,
+          "ci_high": 0.6265
+        },
+        "gpt55_think": {
+          "mean": 0.7741,
+          "ci_low": 0.7649,
+          "ci_high": 0.7833
+        }
+      },
+      "Wholesale/Retail Trade": {
+        "n_queries": 6,
+        "n_assertions": 250,
+        "gemini_31_pro": {
+          "mean": 0.6253,
+          "ci_low": 0.6069,
+          "ci_high": 0.6438
+        },
+        "claude_opus_47": {
+          "mean": 0.7711,
+          "ci_low": 0.7363,
+          "ci_high": 0.8059
+        },
+        "gpt55_think": {
+          "mean": 0.7502,
+          "ci_low": 0.7377,
+          "ci_high": 0.7628
         }
       }
     },
     "by_file_type": {
-      "excel": {
-        "stats": {
-          "num_queries": 29,
-          "num_assertions": 914,
-          "num_files": 8
+      "P": {
+        "n_queries": 41,
+        "n_assertions": 2382,
+        "gemini_31_pro": {
+          "mean": 0.4216,
+          "ci_low": 0.4018,
+          "ci_high": 0.4415
         },
         "claude_opus_47": {
-          "raw": 0.5274,
-          "percentage": 52.74
-        },
-        "gemini_31_pro": {
-          "raw": 0.4508,
-          "percentage": 45.08
+          "mean": 0.5913,
+          "ci_low": 0.5844,
+          "ci_high": 0.5982
         },
         "gpt55_think": {
-          "raw": 0.5142,
-          "percentage": 51.42
+          "mean": 0.5968,
+          "ci_low": 0.5866,
+          "ci_high": 0.6071
         }
       },
-      "excel, word": {
-        "stats": {
-          "num_queries": 8,
-          "num_assertions": 377,
-          "num_files": 4
+      "W": {
+        "n_queries": 35,
+        "n_assertions": 1317,
+        "gemini_31_pro": {
+          "mean": 0.5412,
+          "ci_low": 0.5076,
+          "ci_high": 0.5749
         },
         "claude_opus_47": {
-          "raw": 0.5119,
-          "percentage": 51.19
-        },
-        "gemini_31_pro": {
-          "raw": 0.3024,
-          "percentage": 30.24
+          "mean": 0.5568,
+          "ci_low": 0.5388,
+          "ci_high": 0.5749
         },
         "gpt55_think": {
-          "raw": 0.3767,
-          "percentage": 37.67
+          "mean": 0.6731,
+          "ci_low": 0.6647,
+          "ci_high": 0.6814
         }
       },
-      "powerpoint": {
-        "stats": {
-          "num_queries": 41,
-          "num_assertions": 2382,
-          "num_files": 9
+      "WP": {
+        "n_queries": 7,
+        "n_assertions": 424,
+        "gemini_31_pro": {
+          "mean": 0.5254,
+          "ci_low": 0.4859,
+          "ci_high": 0.565
         },
         "claude_opus_47": {
-          "raw": 0.5953,
-          "percentage": 59.53
-        },
-        "gemini_31_pro": {
-          "raw": 0.4274,
-          "percentage": 42.74
+          "mean": 0.6441,
+          "ci_low": 0.5367,
+          "ci_high": 0.7515
         },
         "gpt55_think": {
-          "raw": 0.5949,
-          "percentage": 59.49
+          "mean": 0.6709,
+          "ci_low": 0.6466,
+          "ci_high": 0.6951
         }
       },
-      "powerpoint, word": {
-        "stats": {
-          "num_queries": 7,
-          "num_assertions": 424,
-          "num_files": 12
+      "WX": {
+        "n_queries": 8,
+        "n_assertions": 377,
+        "gemini_31_pro": {
+          "mean": 0.3266,
+          "ci_low": 0.2206,
+          "ci_high": 0.4325
         },
         "claude_opus_47": {
-          "raw": 0.5967,
-          "percentage": 59.67
-        },
-        "gemini_31_pro": {
-          "raw": 0.5094,
-          "percentage": 50.94
+          "mean": 0.4892,
+          "ci_low": 0.4456,
+          "ci_high": 0.5329
         },
         "gpt55_think": {
-          "raw": 0.658,
-          "percentage": 65.8
+          "mean": 0.42,
+          "ci_low": 0.3045,
+          "ci_high": 0.5355
         }
       },
-      "word": {
-        "stats": {
-          "num_queries": 35,
-          "num_assertions": 1317,
-          "num_files": 31
+      "X": {
+        "n_queries": 29,
+        "n_assertions": 914,
+        "gemini_31_pro": {
+          "mean": 0.4528,
+          "ci_low": 0.4368,
+          "ci_high": 0.4688
         },
         "claude_opus_47": {
-          "raw": 0.5497,
-          "percentage": 54.97
-        },
-        "gemini_31_pro": {
-          "raw": 0.5262,
-          "percentage": 52.62
+          "mean": 0.5224,
+          "ci_low": 0.5203,
+          "ci_high": 0.5245
         },
         "gpt55_think": {
-          "raw": 0.6773,
-          "percentage": 67.73
-        }
-      }
-    },
-    "by_domain": {
-      "Accounting": {
-        "stats": {
-          "num_queries": 15,
-          "num_assertions": 786
-        },
-        "claude_opus_47": {
-          "raw": 0.5191,
-          "percentage": 51.91,
-          "mean": 0.518,
-          "mean_percentage": 51.8,
-          "std": 0.0058,
-          "std_percentage": 0.58
-        },
-        "gemini_31_pro": {
-          "raw": 0.3753,
-          "percentage": 37.53,
-          "mean": 0.3739,
-          "mean_percentage": 37.39,
-          "std": 0.0187,
-          "std_percentage": 1.87
-        },
-        "gpt55_think": {
-          "raw": 0.4389,
-          "percentage": 43.89,
-          "mean": 0.418,
-          "mean_percentage": 41.8,
-          "std": 0.037,
-          "std_percentage": 3.7
-        }
-      },
-      "Corporate Governance": {
-        "stats": {
-          "num_queries": 6,
-          "num_assertions": 170
-        },
-        "claude_opus_47": {
-          "raw": 0.4353,
-          "percentage": 43.53,
-          "mean": 0.4562,
-          "mean_percentage": 45.62,
-          "std": 0.015,
-          "std_percentage": 1.5
-        },
-        "gemini_31_pro": {
-          "raw": 0.3353,
-          "percentage": 33.53,
-          "mean": 0.3268,
-          "mean_percentage": 32.68,
-          "std": 0.0235,
-          "std_percentage": 2.35
-        },
-        "gpt55_think": {
-          "raw": 0.5412,
-          "percentage": 54.12,
-          "mean": 0.5562,
-          "mean_percentage": 55.62,
-          "std": 0.0136,
-          "std_percentage": 1.36
-        }
-      },
-      "Educational Services": {
-        "stats": {
-          "num_queries": 8,
-          "num_assertions": 234
-        },
-        "claude_opus_47": {
-          "raw": 0.5897,
-          "percentage": 58.97,
-          "mean": 0.5831,
-          "mean_percentage": 58.31,
-          "std": 0.0095,
-          "std_percentage": 0.95
-        },
-        "gemini_31_pro": {
-          "raw": 0.547,
-          "percentage": 54.7,
-          "mean": 0.5337,
-          "mean_percentage": 53.37,
-          "std": 0.0353,
-          "std_percentage": 3.53
-        },
-        "gpt55_think": {
-          "raw": 0.6068,
-          "percentage": 60.68,
-          "mean": 0.6016,
-          "mean_percentage": 60.16,
-          "std": 0.0196,
-          "std_percentage": 1.96
-        }
-      },
-      "Energy": {
-        "stats": {
-          "num_queries": 6,
-          "num_assertions": 139
-        },
-        "claude_opus_47": {
-          "raw": 0.6763,
-          "percentage": 67.63,
-          "mean": 0.6483,
-          "mean_percentage": 64.83,
-          "std": 0.0171,
-          "std_percentage": 1.71
-        },
-        "gemini_31_pro": {
-          "raw": 0.5971,
-          "percentage": 59.71,
-          "mean": 0.5779,
-          "mean_percentage": 57.79,
-          "std": 0.0159,
-          "std_percentage": 1.59
-        },
-        "gpt55_think": {
-          "raw": 0.6187,
-          "percentage": 61.87,
-          "mean": 0.6051,
-          "mean_percentage": 60.51,
-          "std": 0.0168,
-          "std_percentage": 1.68
-        }
-      },
-      "Finance": {
-        "stats": {
-          "num_queries": 15,
-          "num_assertions": 707
-        },
-        "claude_opus_47": {
-          "raw": 0.4668,
-          "percentage": 46.68,
-          "mean": 0.4642,
-          "mean_percentage": 46.42,
-          "std": 0.0242,
-          "std_percentage": 2.42
-        },
-        "gemini_31_pro": {
-          "raw": 0.495,
-          "percentage": 49.5,
-          "mean": 0.5028,
-          "mean_percentage": 50.28,
-          "std": 0.0094,
-          "std_percentage": 0.94
-        },
-        "gpt55_think": {
-          "raw": 0.5629,
-          "percentage": 56.29,
-          "mean": 0.5703,
-          "mean_percentage": 57.03,
-          "std": 0.0108,
-          "std_percentage": 1.08
-        }
-      },
-      "Government": {
-        "stats": {
-          "num_queries": 8,
-          "num_assertions": 332
-        },
-        "claude_opus_47": {
-          "raw": 0.6476,
-          "percentage": 64.76,
-          "mean": 0.6456,
-          "mean_percentage": 64.56,
-          "std": 0.0302,
-          "std_percentage": 3.02
-        },
-        "gemini_31_pro": {
-          "raw": 0.4639,
-          "percentage": 46.39,
-          "mean": 0.4629,
-          "mean_percentage": 46.29,
-          "std": 0.0146,
-          "std_percentage": 1.46
-        },
-        "gpt55_think": {
-          "raw": 0.5994,
-          "percentage": 59.94,
-          "mean": 0.6051,
-          "mean_percentage": 60.51,
-          "std": 0.0039,
-          "std_percentage": 0.39
-        }
-      },
-      "Healthcare & Social Assistance": {
-        "stats": {
-          "num_queries": 13,
-          "num_assertions": 324
-        },
-        "claude_opus_47": {
-          "raw": 0.7778,
-          "percentage": 77.78,
-          "mean": 0.7713,
-          "mean_percentage": 77.13,
-          "std": 0.0059,
-          "std_percentage": 0.59
-        },
-        "gemini_31_pro": {
-          "raw": 0.5741,
-          "percentage": 57.41,
-          "mean": 0.5586,
-          "mean_percentage": 55.86,
-          "std": 0.0218,
-          "std_percentage": 2.18
-        },
-        "gpt55_think": {
-          "raw": 0.7654,
-          "percentage": 76.54,
-          "mean": 0.7469,
-          "mean_percentage": 74.69,
-          "std": 0.0256,
-          "std_percentage": 2.56
-        }
-      },
-      "Information": {
-        "stats": {
-          "num_queries": 12,
-          "num_assertions": 376
-        },
-        "claude_opus_47": {
-          "raw": 0.6356,
-          "percentage": 63.56,
-          "mean": 0.6176,
-          "mean_percentage": 61.76,
-          "std": 0.0124,
-          "std_percentage": 1.24
-        },
-        "gemini_31_pro": {
-          "raw": 0.4468,
-          "percentage": 44.68,
-          "mean": 0.4412,
-          "mean_percentage": 44.12,
-          "std": 0.0163,
-          "std_percentage": 1.63
-        },
-        "gpt55_think": {
-          "raw": 0.641,
-          "percentage": 64.1,
-          "mean": 0.6353,
-          "mean_percentage": 63.53,
-          "std": 0.0107,
-          "std_percentage": 1.07
-        }
-      },
-      "Manufacturing": {
-        "stats": {
-          "num_queries": 10,
-          "num_assertions": 1171
-        },
-        "claude_opus_47": {
-          "raw": 0.5841,
-          "percentage": 58.41,
-          "mean": 0.5814,
-          "mean_percentage": 58.14,
-          "std": 0.0206,
-          "std_percentage": 2.06
-        },
-        "gemini_31_pro": {
-          "raw": 0.4219,
-          "percentage": 42.19,
-          "mean": 0.427,
-          "mean_percentage": 42.7,
-          "std": 0.0132,
-          "std_percentage": 1.32
-        },
-        "gpt55_think": {
-          "raw": 0.5918,
-          "percentage": 59.18,
-          "mean": 0.5915,
-          "mean_percentage": 59.15,
-          "std": 0.0142,
-          "std_percentage": 1.42
-        }
-      },
-      "Supply Chain": {
-        "stats": {
-          "num_queries": 6,
-          "num_assertions": 473
-        },
-        "claude_opus_47": {
-          "raw": 0.4672,
-          "percentage": 46.72,
-          "mean": 0.4724,
-          "mean_percentage": 47.24,
-          "std": 0.0469,
-          "std_percentage": 4.69
-        },
-        "gemini_31_pro": {
-          "raw": 0.3446,
-          "percentage": 34.46,
-          "mean": 0.3439,
-          "mean_percentage": 34.39,
-          "std": 0.0155,
-          "std_percentage": 1.55
-        },
-        "gpt55_think": {
-          "raw": 0.4588,
-          "percentage": 45.88,
-          "mean": 0.4663,
-          "mean_percentage": 46.63,
-          "std": 0.0193,
-          "std_percentage": 1.93
-        }
-      },
-      "Waste Management & Environmental Services": {
-        "stats": {
-          "num_queries": 15,
-          "num_assertions": 452
-        },
-        "claude_opus_47": {
-          "raw": 0.5619,
-          "percentage": 56.19,
-          "mean": 0.5396,
-          "mean_percentage": 53.96,
-          "std": 0.0287,
-          "std_percentage": 2.87
-        },
-        "gemini_31_pro": {
-          "raw": 0.5575,
-          "percentage": 55.75,
-          "mean": 0.547,
-          "mean_percentage": 54.7,
-          "std": 0.0215,
-          "std_percentage": 2.15
-        },
-        "gpt55_think": {
-          "raw": 0.7898,
-          "percentage": 78.98,
-          "mean": 0.7751,
-          "mean_percentage": 77.51,
-          "std": 0.014,
-          "std_percentage": 1.4
-        }
-      },
-      "Wholesale/Retail Trade": {
-        "stats": {
-          "num_queries": 6,
-          "num_assertions": 250
-        },
-        "claude_opus_47": {
-          "raw": 0.78,
-          "percentage": 78.0,
-          "mean": 0.7711,
-          "mean_percentage": 77.11,
-          "std": 0.0122,
-          "std_percentage": 1.22
-        },
-        "gemini_31_pro": {
-          "raw": 0.632,
-          "percentage": 63.2,
-          "mean": 0.6253,
-          "mean_percentage": 62.53,
-          "std": 0.0082,
-          "std_percentage": 0.82
-        },
-        "gpt55_think": {
-          "raw": 0.76,
-          "percentage": 76.0,
-          "mean": 0.7449,
-          "mean_percentage": 74.49,
-          "std": 0.0134,
-          "std_percentage": 1.34
-        }
-      }
-    },
-    "by_file_type_and_domain": {
-      "word": {},
-      "powerpoint": {},
-      "excel": {},
-      "multifile": {
-        "Accounting": {
-          "stats": {
-            "num_queries": 15,
-            "num_assertions": 786
-          },
-          "claude_opus_47": {
-            "raw": 0.5191,
-            "percentage": 51.91,
-            "mean": 0.518,
-            "mean_percentage": 51.8,
-            "std": 0.0058,
-            "std_percentage": 0.58
-          },
-          "gemini_31_pro": {
-            "raw": 0.3753,
-            "percentage": 37.53,
-            "mean": 0.3739,
-            "mean_percentage": 37.39,
-            "std": 0.0187,
-            "std_percentage": 1.87
-          },
-          "gpt55_think": {
-            "raw": 0.4389,
-            "percentage": 43.89,
-            "mean": 0.418,
-            "mean_percentage": 41.8,
-            "std": 0.037,
-            "std_percentage": 3.7
-          }
-        },
-        "Corporate Governance": {
-          "stats": {
-            "num_queries": 6,
-            "num_assertions": 170
-          },
-          "claude_opus_47": {
-            "raw": 0.4353,
-            "percentage": 43.53,
-            "mean": 0.4562,
-            "mean_percentage": 45.62,
-            "std": 0.015,
-            "std_percentage": 1.5
-          },
-          "gemini_31_pro": {
-            "raw": 0.3353,
-            "percentage": 33.53,
-            "mean": 0.3268,
-            "mean_percentage": 32.68,
-            "std": 0.0235,
-            "std_percentage": 2.35
-          },
-          "gpt55_think": {
-            "raw": 0.5412,
-            "percentage": 54.12,
-            "mean": 0.5562,
-            "mean_percentage": 55.62,
-            "std": 0.0136,
-            "std_percentage": 1.36
-          }
-        },
-        "Educational Services": {
-          "stats": {
-            "num_queries": 8,
-            "num_assertions": 234
-          },
-          "claude_opus_47": {
-            "raw": 0.5897,
-            "percentage": 58.97,
-            "mean": 0.5831,
-            "mean_percentage": 58.31,
-            "std": 0.0095,
-            "std_percentage": 0.95
-          },
-          "gemini_31_pro": {
-            "raw": 0.547,
-            "percentage": 54.7,
-            "mean": 0.5337,
-            "mean_percentage": 53.37,
-            "std": 0.0353,
-            "std_percentage": 3.53
-          },
-          "gpt55_think": {
-            "raw": 0.6068,
-            "percentage": 60.68,
-            "mean": 0.6016,
-            "mean_percentage": 60.16,
-            "std": 0.0196,
-            "std_percentage": 1.96
-          }
-        },
-        "Energy": {
-          "stats": {
-            "num_queries": 6,
-            "num_assertions": 139
-          },
-          "claude_opus_47": {
-            "raw": 0.6763,
-            "percentage": 67.63,
-            "mean": 0.6483,
-            "mean_percentage": 64.83,
-            "std": 0.0171,
-            "std_percentage": 1.71
-          },
-          "gemini_31_pro": {
-            "raw": 0.5971,
-            "percentage": 59.71,
-            "mean": 0.5779,
-            "mean_percentage": 57.79,
-            "std": 0.0159,
-            "std_percentage": 1.59
-          },
-          "gpt55_think": {
-            "raw": 0.6187,
-            "percentage": 61.87,
-            "mean": 0.6051,
-            "mean_percentage": 60.51,
-            "std": 0.0168,
-            "std_percentage": 1.68
-          }
-        },
-        "Finance": {
-          "stats": {
-            "num_queries": 15,
-            "num_assertions": 707
-          },
-          "claude_opus_47": {
-            "raw": 0.4668,
-            "percentage": 46.68,
-            "mean": 0.4642,
-            "mean_percentage": 46.42,
-            "std": 0.0242,
-            "std_percentage": 2.42
-          },
-          "gemini_31_pro": {
-            "raw": 0.495,
-            "percentage": 49.5,
-            "mean": 0.5028,
-            "mean_percentage": 50.28,
-            "std": 0.0094,
-            "std_percentage": 0.94
-          },
-          "gpt55_think": {
-            "raw": 0.5629,
-            "percentage": 56.29,
-            "mean": 0.5703,
-            "mean_percentage": 57.03,
-            "std": 0.0108,
-            "std_percentage": 1.08
-          }
-        },
-        "Government": {
-          "stats": {
-            "num_queries": 8,
-            "num_assertions": 332
-          },
-          "claude_opus_47": {
-            "raw": 0.6476,
-            "percentage": 64.76,
-            "mean": 0.6456,
-            "mean_percentage": 64.56,
-            "std": 0.0302,
-            "std_percentage": 3.02
-          },
-          "gemini_31_pro": {
-            "raw": 0.4639,
-            "percentage": 46.39,
-            "mean": 0.4629,
-            "mean_percentage": 46.29,
-            "std": 0.0146,
-            "std_percentage": 1.46
-          },
-          "gpt55_think": {
-            "raw": 0.5994,
-            "percentage": 59.94,
-            "mean": 0.6051,
-            "mean_percentage": 60.51,
-            "std": 0.0039,
-            "std_percentage": 0.39
-          }
-        },
-        "Healthcare & Social Assistance": {
-          "stats": {
-            "num_queries": 13,
-            "num_assertions": 324
-          },
-          "claude_opus_47": {
-            "raw": 0.7778,
-            "percentage": 77.78,
-            "mean": 0.7713,
-            "mean_percentage": 77.13,
-            "std": 0.0059,
-            "std_percentage": 0.59
-          },
-          "gemini_31_pro": {
-            "raw": 0.5741,
-            "percentage": 57.41,
-            "mean": 0.5586,
-            "mean_percentage": 55.86,
-            "std": 0.0218,
-            "std_percentage": 2.18
-          },
-          "gpt55_think": {
-            "raw": 0.7654,
-            "percentage": 76.54,
-            "mean": 0.7469,
-            "mean_percentage": 74.69,
-            "std": 0.0256,
-            "std_percentage": 2.56
-          }
-        },
-        "Information": {
-          "stats": {
-            "num_queries": 12,
-            "num_assertions": 376
-          },
-          "claude_opus_47": {
-            "raw": 0.6356,
-            "percentage": 63.56,
-            "mean": 0.6176,
-            "mean_percentage": 61.76,
-            "std": 0.0124,
-            "std_percentage": 1.24
-          },
-          "gemini_31_pro": {
-            "raw": 0.4468,
-            "percentage": 44.68,
-            "mean": 0.4412,
-            "mean_percentage": 44.12,
-            "std": 0.0163,
-            "std_percentage": 1.63
-          },
-          "gpt55_think": {
-            "raw": 0.641,
-            "percentage": 64.1,
-            "mean": 0.6353,
-            "mean_percentage": 63.53,
-            "std": 0.0107,
-            "std_percentage": 1.07
-          }
-        },
-        "Manufacturing": {
-          "stats": {
-            "num_queries": 10,
-            "num_assertions": 1171
-          },
-          "claude_opus_47": {
-            "raw": 0.5841,
-            "percentage": 58.41,
-            "mean": 0.5814,
-            "mean_percentage": 58.14,
-            "std": 0.0206,
-            "std_percentage": 2.06
-          },
-          "gemini_31_pro": {
-            "raw": 0.4219,
-            "percentage": 42.19,
-            "mean": 0.427,
-            "mean_percentage": 42.7,
-            "std": 0.0132,
-            "std_percentage": 1.32
-          },
-          "gpt55_think": {
-            "raw": 0.5918,
-            "percentage": 59.18,
-            "mean": 0.5915,
-            "mean_percentage": 59.15,
-            "std": 0.0142,
-            "std_percentage": 1.42
-          }
-        },
-        "Supply Chain": {
-          "stats": {
-            "num_queries": 6,
-            "num_assertions": 473
-          },
-          "claude_opus_47": {
-            "raw": 0.4672,
-            "percentage": 46.72,
-            "mean": 0.4724,
-            "mean_percentage": 47.24,
-            "std": 0.0469,
-            "std_percentage": 4.69
-          },
-          "gemini_31_pro": {
-            "raw": 0.3446,
-            "percentage": 34.46,
-            "mean": 0.3439,
-            "mean_percentage": 34.39,
-            "std": 0.0155,
-            "std_percentage": 1.55
-          },
-          "gpt55_think": {
-            "raw": 0.4588,
-            "percentage": 45.88,
-            "mean": 0.4663,
-            "mean_percentage": 46.63,
-            "std": 0.0193,
-            "std_percentage": 1.93
-          }
-        },
-        "Waste Management & Environmental Services": {
-          "stats": {
-            "num_queries": 15,
-            "num_assertions": 452
-          },
-          "claude_opus_47": {
-            "raw": 0.5619,
-            "percentage": 56.19,
-            "mean": 0.5396,
-            "mean_percentage": 53.96,
-            "std": 0.0287,
-            "std_percentage": 2.87
-          },
-          "gemini_31_pro": {
-            "raw": 0.5575,
-            "percentage": 55.75,
-            "mean": 0.547,
-            "mean_percentage": 54.7,
-            "std": 0.0215,
-            "std_percentage": 2.15
-          },
-          "gpt55_think": {
-            "raw": 0.7898,
-            "percentage": 78.98,
-            "mean": 0.7751,
-            "mean_percentage": 77.51,
-            "std": 0.014,
-            "std_percentage": 1.4
-          }
-        },
-        "Wholesale/Retail Trade": {
-          "stats": {
-            "num_queries": 6,
-            "num_assertions": 250
-          },
-          "claude_opus_47": {
-            "raw": 0.78,
-            "percentage": 78.0,
-            "mean": 0.7711,
-            "mean_percentage": 77.11,
-            "std": 0.0122,
-            "std_percentage": 1.22
-          },
-          "gemini_31_pro": {
-            "raw": 0.632,
-            "percentage": 63.2,
-            "mean": 0.6253,
-            "mean_percentage": 62.53,
-            "std": 0.0082,
-            "std_percentage": 0.82
-          },
-          "gpt55_think": {
-            "raw": 0.76,
-            "percentage": 76.0,
-            "mean": 0.7449,
-            "mean_percentage": 74.49,
-            "std": 0.0134,
-            "std_percentage": 1.34
-          }
+          "mean": 0.5057,
+          "ci_low": 0.4926,
+          "ci_high": 0.5189
         }
       }
     }
   },
   "file_fidelity": {
-    "overall": {
-      "word": {
-        "stats": {
-          "num_queries": 383,
-          "num_assertions": 492,
-          "num_files": 78
-        },
-        "claude_opus_47": {
-          "raw": 0.9146,
-          "percentage": 91.46
-        },
-        "gemini_31_pro": {
-          "raw": 0.5508,
-          "percentage": 55.08
-        },
-        "gpt55_think": {
-          "raw": 0.687,
-          "percentage": 68.7
-        }
-      },
-      "powerpoint": {
-        "stats": {
-          "num_queries": 238,
-          "num_assertions": 305,
-          "num_files": 46
-        },
-        "claude_opus_47": {
-          "raw": 0.859,
-          "percentage": 85.9
-        },
-        "gemini_31_pro": {
-          "raw": 0.6393,
-          "percentage": 63.93
-        },
-        "gpt55_think": {
-          "raw": 0.8328,
-          "percentage": 83.28
-        }
-      },
-      "excel": {
-        "stats": {
-          "num_queries": 281,
-          "num_assertions": 508,
-          "num_files": 116
-        },
-        "claude_opus_47": {
-          "raw": 0.6949,
-          "percentage": 69.49
-        },
-        "gemini_31_pro": {
-          "raw": 0.5945,
-          "percentage": 59.45
-        },
-        "gpt55_think": {
-          "raw": 0.7106,
-          "percentage": 71.06
-        }
-      },
-      "all_apps": {
-        "stats": {
-          "num_queries": 902,
-          "num_assertions": 1305,
-          "num_files": 240
-        },
-        "claude_opus_47": {
-          "raw": 0.8228,
-          "percentage": 82.28
-        },
-        "gemini_31_pro": {
-          "raw": 0.5949,
-          "percentage": 59.49
-        },
-        "gpt55_think": {
-          "raw": 0.7435,
-          "percentage": 74.35
-        }
-      }
+    "human_baseline": {
+      "excel": 0.459,
+      "powerpoint": 0.6827,
+      "word": 0.786
     },
-    "by_feature": {
-      "word": {
-        "Comment": {
-          "stats": {
-            "num_queries": 11,
-            "num_assertions": 12
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0833,
-            "percentage": 8.33
-          },
-          "gpt55_think": {
-            "raw": 0.75,
-            "percentage": 75.0
-          }
+    "excel": {
+      "main": {
+        "gemini_31_pro": {
+          "score": 0.6102,
+          "n": 508
         },
-        "Equation": {
-          "stats": {
-            "num_queries": 10,
-            "num_assertions": 12
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.8333,
-            "percentage": 83.33
-          },
-          "gpt55_think": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          }
+        "claude_opus_47": {
+          "score": 0.7106,
+          "n": 508
         },
-        "Font": {
-          "stats": {
-            "num_queries": 29,
-            "num_assertions": 35
-          },
-          "claude_opus_47": {
-            "raw": 0.9714,
-            "percentage": 97.14
-          },
-          "gemini_31_pro": {
-            "raw": 0.1429,
-            "percentage": 14.29
-          },
-          "gpt55_think": {
-            "raw": 0.1714,
-            "percentage": 17.14
-          }
-        },
-        "Footer": {
-          "stats": {
-            "num_queries": 13,
-            "num_assertions": 25
-          },
-          "claude_opus_47": {
-            "raw": 0.8,
-            "percentage": 80.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.36,
-            "percentage": 36.0
-          }
-        },
-        "Footnote": {
-          "stats": {
-            "num_queries": 16,
-            "num_assertions": 46
-          },
-          "claude_opus_47": {
-            "raw": 0.8696,
-            "percentage": 86.96
-          },
-          "gemini_31_pro": {
-            "raw": 0.2826,
-            "percentage": 28.26
-          },
-          "gpt55_think": {
-            "raw": 0.8913,
-            "percentage": 89.13
-          }
-        },
-        "Header": {
-          "stats": {
-            "num_queries": 11,
-            "num_assertions": 12
-          },
-          "claude_opus_47": {
-            "raw": 0.8333,
-            "percentage": 83.33
-          },
-          "gemini_31_pro": {
-            "raw": 0.0833,
-            "percentage": 8.33
-          },
-          "gpt55_think": {
-            "raw": 0.1667,
-            "percentage": 16.67
-          }
-        },
-        "Highlight": {
-          "stats": {
-            "num_queries": 14,
-            "num_assertions": 24
-          },
-          "claude_opus_47": {
-            "raw": 0.5417,
-            "percentage": 54.17
-          },
-          "gemini_31_pro": {
-            "raw": 0.0833,
-            "percentage": 8.33
-          },
-          "gpt55_think": {
-            "raw": 0.5,
-            "percentage": 50.0
-          }
-        },
-        "Hyperlink": {
-          "stats": {
-            "num_queries": 18,
-            "num_assertions": 18
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.1111,
-            "percentage": 11.11
-          },
-          "gpt55_think": {
-            "raw": 0.0556,
-            "percentage": 5.56
-          }
-        },
-        "Layout": {
-          "stats": {
-            "num_queries": 18,
-            "num_assertions": 21
-          },
-          "claude_opus_47": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          },
-          "gemini_31_pro": {
-            "raw": 0.0952,
-            "percentage": 9.52
-          },
-          "gpt55_think": {
-            "raw": 0.2857,
-            "percentage": 28.57
-          }
-        },
-        "Metadata": {
-          "stats": {
-            "num_queries": 17,
-            "num_assertions": 18
-          },
-          "claude_opus_47": {
-            "raw": 0.4444,
-            "percentage": 44.44
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.0556,
-            "percentage": 5.56
-          }
-        },
-        "Strikeout": {
-          "stats": {
-            "num_queries": 10,
-            "num_assertions": 10
-          },
-          "claude_opus_47": {
-            "raw": 0.9,
-            "percentage": 90.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.4,
-            "percentage": 40.0
-          },
-          "gpt55_think": {
-            "raw": 0.4,
-            "percentage": 40.0
-          }
-        },
-        "Table": {
-          "stats": {
-            "num_queries": 143,
-            "num_assertions": 172
-          },
-          "claude_opus_47": {
-            "raw": 0.9942,
-            "percentage": 99.42
-          },
-          "gemini_31_pro": {
-            "raw": 0.8953,
-            "percentage": 89.53
-          },
-          "gpt55_think": {
-            "raw": 0.9593,
-            "percentage": 95.93
-          }
-        },
-        "Text": {
-          "stats": {
-            "num_queries": 62,
-            "num_assertions": 70
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.9571,
-            "percentage": 95.71
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Textbox": {
-          "stats": {
-            "num_queries": 9,
-            "num_assertions": 15
-          },
-          "claude_opus_47": {
-            "raw": 0.9333,
-            "percentage": 93.33
-          },
-          "gemini_31_pro": {
-            "raw": 0.5333,
-            "percentage": 53.33
-          },
-          "gpt55_think": {
-            "raw": 0.2667,
-            "percentage": 26.67
-          }
-        },
-        "Video": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 0.5,
-            "percentage": 50.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 0.0,
-            "percentage": 0.0
-          }
+        "gpt55_think": {
+          "score": 0.7264,
+          "n": 508
         }
       },
-      "powerpoint": {
-        "Animations": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.5,
-            "percentage": 50.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
+      "by_feature": {
         "Chart": {
-          "stats": {
-            "num_queries": 13,
-            "num_assertions": 14
-          },
-          "claude_opus_47": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          },
-          "gemini_31_pro": {
-            "raw": 0.3571,
-            "percentage": 35.71
-          },
-          "gpt55_think": {
-            "raw": 0.7692,
-            "percentage": 76.92
-          }
-        },
-        "Equation (or Symbol)": {
-          "stats": {
-            "num_queries": 7,
-            "num_assertions": 9
-          },
-          "claude_opus_47": {
-            "raw": 0.8889,
-            "percentage": 88.89
-          },
-          "gemini_31_pro": {
-            "raw": 0.5556,
-            "percentage": 55.56
-          },
-          "gpt55_think": {
-            "raw": 0.5556,
-            "percentage": 55.56
-          }
-        },
-        "Header/Footer/SlideNum/DateTime": {
-          "stats": {
-            "num_queries": 5,
-            "num_assertions": 5
-          },
-          "claude_opus_47": {
-            "raw": 0.8,
-            "percentage": 80.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.4,
-            "percentage": 40.0
-          },
-          "gpt55_think": {
-            "raw": 0.6,
-            "percentage": 60.0
-          }
-        },
-        "Hyperlink": {
-          "stats": {
-            "num_queries": 5,
-            "num_assertions": 7
-          },
-          "claude_opus_47": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          },
-          "gemini_31_pro": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          },
-          "gpt55_think": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          }
-        },
-        "Icons": {
-          "stats": {
-            "num_queries": 1,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Image": {
-          "stats": {
-            "num_queries": 20,
-            "num_assertions": 25
-          },
-          "claude_opus_47": {
-            "raw": 0.92,
-            "percentage": 92.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.52,
-            "percentage": 52.0
-          },
-          "gpt55_think": {
-            "raw": 0.9167,
-            "percentage": 91.67
-          }
-        },
-        "Ink": {
-          "stats": {
-            "num_queries": 3,
-            "num_assertions": 3
-          },
-          "claude_opus_47": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          },
-          "gpt55_think": {
-            "raw": 0.3333,
-            "percentage": 33.33
-          }
-        },
-        "Language": {
-          "stats": {
-            "num_queries": 3,
-            "num_assertions": 3
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Metadata": {
-          "stats": {
-            "num_queries": 3,
-            "num_assertions": 3
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.3333,
-            "percentage": 33.33
-          },
-          "gpt55_think": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          }
-        },
-        "Position/Association/Grouping": {
-          "stats": {
-            "num_queries": 38,
-            "num_assertions": 48
-          },
-          "claude_opus_47": {
-            "raw": 0.8542,
-            "percentage": 85.42
-          },
-          "gemini_31_pro": {
-            "raw": 0.7083,
-            "percentage": 70.83
-          },
-          "gpt55_think": {
-            "raw": 0.8542,
-            "percentage": 85.42
-          }
-        },
-        "Section": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.5,
-            "percentage": 50.0
-          }
-        },
-        "Shape / Text": {
-          "stats": {
-            "num_queries": 7,
-            "num_assertions": 9
-          },
-          "claude_opus_47": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          },
-          "gemini_31_pro": {
-            "raw": 0.2222,
-            "percentage": 22.22
-          },
-          "gpt55_think": {
-            "raw": 0.4444,
-            "percentage": 44.44
-          }
-        },
-        "Shapes / Type & Color": {
-          "stats": {
-            "num_queries": 3,
-            "num_assertions": 4
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.5,
-            "percentage": 50.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Slide Note": {
-          "stats": {
-            "num_queries": 5,
-            "num_assertions": 5
-          },
-          "claude_opus_47": {
-            "raw": 0.6,
-            "percentage": 60.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.8,
-            "percentage": 80.0
-          }
-        },
-        "Slide Properties - Hidden": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 3
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          },
-          "gpt55_think": {
-            "raw": 0.6667,
-            "percentage": 66.67
-          }
-        },
-        "Slide Text": {
-          "stats": {
-            "num_queries": 79,
-            "num_assertions": 111
-          },
-          "claude_opus_47": {
-            "raw": 0.8378,
-            "percentage": 83.78
-          },
-          "gemini_31_pro": {
-            "raw": 0.7748,
-            "percentage": 77.48
-          },
-          "gpt55_think": {
-            "raw": 0.8739,
-            "percentage": 87.39
-          }
-        },
-        "SmartArt / Semantics": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 3
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "SmartArt / Type & Text": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 0.5,
-            "percentage": 50.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.0,
-            "percentage": 0.0
-          }
-        },
-        "Tables / Cell color coding": {
-          "stats": {
-            "num_queries": 2,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Tables / Values": {
-          "stats": {
-            "num_queries": 20,
-            "num_assertions": 22
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.4091,
-            "percentage": 40.91
-          },
-          "gpt55_think": {
-            "raw": 0.8636,
-            "percentage": 86.36
-          }
-        },
-        "Text Highlight": {
-          "stats": {
-            "num_queries": 13,
-            "num_assertions": 20
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.7,
-            "percentage": 70.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        },
-        "Video": {
-          "stats": {
-            "num_queries": 1,
-            "num_assertions": 1
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
-        }
-      },
-      "excel": {
-        "Chart": {
-          "stats": {
-            "num_queries": 9,
-            "num_assertions": 14
-          },
-          "claude_opus_47": {
-            "raw": 0.7857,
-            "percentage": 78.57
-          },
-          "gemini_31_pro": {
-            "raw": 0.5714,
-            "percentage": 57.14
-          },
-          "gpt55_think": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          }
+          "n_queries": 9,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.5714,
+          "claude_opus_47": 0.7857,
+          "gpt55_think": 0.8571
         },
         "Formula": {
-          "stats": {
-            "num_queries": 15,
-            "num_assertions": 25
-          },
-          "claude_opus_47": {
-            "raw": 0.76,
-            "percentage": 76.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.4,
-            "percentage": 40.0
-          },
-          "gpt55_think": {
-            "raw": 0.8,
-            "percentage": 80.0
-          }
+          "n_queries": 15,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.44,
+          "claude_opus_47": 0.76,
+          "gpt55_think": 0.8
         },
         "Image": {
-          "stats": {
-            "num_queries": 6,
-            "num_assertions": 14
-          },
-          "claude_opus_47": {
-            "raw": 0.5,
-            "percentage": 50.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.8571,
-            "percentage": 85.71
-          }
+          "n_queries": 6,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.8571
         },
         "Other": {
-          "stats": {
-            "num_queries": 1,
-            "num_assertions": 2
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
+          "n_queries": 1,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
         },
         "PivotTable": {
-          "stats": {
-            "num_queries": 5,
-            "num_assertions": 5
-          },
-          "claude_opus_47": {
-            "raw": 1.0,
-            "percentage": 100.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.8,
-            "percentage": 80.0
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.8,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
         },
         "Shape": {
-          "stats": {
-            "num_queries": 1,
-            "num_assertions": 1
-          },
-          "claude_opus_47": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gemini_31_pro": {
-            "raw": 0.0,
-            "percentage": 0.0
-          },
-          "gpt55_think": {
-            "raw": 0.0,
-            "percentage": 0.0
-          }
+          "n_queries": 1,
+          "n_assertions": 1,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.0
         },
         "Sheet": {
-          "stats": {
-            "num_queries": 9,
-            "num_assertions": 17
-          },
-          "claude_opus_47": {
-            "raw": 0.8824,
-            "percentage": 88.24
-          },
-          "gemini_31_pro": {
-            "raw": 0.9412,
-            "percentage": 94.12
-          },
-          "gpt55_think": {
-            "raw": 1.0,
-            "percentage": 100.0
-          }
+          "n_queries": 9,
+          "n_assertions": 17,
+          "gemini_31_pro": 0.9412,
+          "claude_opus_47": 0.8824,
+          "gpt55_think": 1.0
         },
         "TLR": {
-          "stats": {
-            "num_queries": 133,
-            "num_assertions": 215
-          },
-          "claude_opus_47": {
-            "raw": 0.5674,
-            "percentage": 56.74
-          },
-          "gemini_31_pro": {
-            "raw": 0.5025,
-            "percentage": 50.25
-          },
-          "gpt55_think": {
-            "raw": 0.5256,
-            "percentage": 52.56
-          }
+          "n_queries": 133,
+          "n_assertions": 215,
+          "gemini_31_pro": 0.5279,
+          "claude_opus_47": 0.5767,
+          "gpt55_think": 0.5488
         },
         "Table": {
-          "stats": {
-            "num_queries": 72,
-            "num_assertions": 151
-          },
-          "claude_opus_47": {
-            "raw": 0.7682,
-            "percentage": 76.82
-          },
-          "gemini_31_pro": {
-            "raw": 0.7682,
-            "percentage": 76.82
-          },
-          "gpt55_think": {
-            "raw": 0.8543,
-            "percentage": 85.43
-          }
+          "n_queries": 72,
+          "n_assertions": 151,
+          "gemini_31_pro": 0.7815,
+          "claude_opus_47": 0.8146,
+          "gpt55_think": 0.8609
         },
         "Unstructured data": {
-          "stats": {
-            "num_queries": 30,
-            "num_assertions": 64
-          },
-          "claude_opus_47": {
-            "raw": 0.875,
-            "percentage": 87.5
-          },
-          "gemini_31_pro": {
-            "raw": 0.7656,
-            "percentage": 76.56
-          },
-          "gpt55_think": {
-            "raw": 0.7969,
-            "percentage": 79.69
-          }
-        }
-      }
-    }
-  },
-  "comprehension_by_size": {
-    "word": {
-      "small": {
-        "claude_opus_47": {
-          "raw": 0.9581,
-          "percentage": 95.81
-        },
-        "gemini_31_pro": {
-          "raw": 0.7032,
-          "percentage": 70.32
-        },
-        "gpt55_think": {
-          "raw": 0.829,
-          "percentage": 82.9
+          "n_queries": 30,
+          "n_assertions": 64,
+          "gemini_31_pro": 0.7656,
+          "claude_opus_47": 0.8594,
+          "gpt55_think": 0.8281
         }
       },
-      "medium": {
-        "claude_opus_47": {
-          "raw": 0.8,
-          "percentage": 80.0
+      "by_size": {
+        "long": {
+          "n_queries": 12,
+          "n_assertions": 26,
+          "gemini_31_pro": 0.8462,
+          "claude_opus_47": 0.9615,
+          "gpt55_think": 0.9231
         },
-        "gemini_31_pro": {
-          "raw": 0.2667,
-          "percentage": 26.67
+        "medium": {
+          "n_queries": 84,
+          "n_assertions": 149,
+          "gemini_31_pro": 0.7181,
+          "claude_opus_47": 0.8121,
+          "gpt55_think": 0.8859
         },
-        "gpt55_think": {
-          "raw": 0.4857,
-          "percentage": 48.57
-        }
-      },
-      "long": {
-        "claude_opus_47": {
-          "raw": 0.8961,
-          "percentage": 89.61
-        },
-        "gemini_31_pro": {
-          "raw": 0.3247,
-          "percentage": 32.47
-        },
-        "gpt55_think": {
-          "raw": 0.3896,
-          "percentage": 38.96
+        "small": {
+          "n_queries": 185,
+          "n_assertions": 333,
+          "gemini_31_pro": 0.5746,
+          "claude_opus_47": 0.6456,
+          "gpt55_think": 0.6396
         }
       }
     },
-    "powerpoint": {},
-    "excel": {
-      "small": {
-        "claude_opus_47": {
-          "raw": 0.6156,
-          "percentage": 61.56
-        },
+    "powerpoint": {
+      "main": {
         "gemini_31_pro": {
-          "raw": 0.5524,
-          "percentage": 55.24
+          "score": 0.6492,
+          "n": 305
+        },
+        "claude_opus_47": {
+          "score": 0.8656,
+          "n": 305
         },
         "gpt55_think": {
-          "raw": 0.6246,
-          "percentage": 62.46
+          "score": 0.859,
+          "n": 305
         }
       },
-      "medium": {
-        "claude_opus_47": {
-          "raw": 0.8188,
-          "percentage": 81.88
+      "by_feature": {
+        "Animations": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
         },
-        "gemini_31_pro": {
-          "raw": 0.7114,
-          "percentage": 71.14
+        "Chart": {
+          "n_queries": 13,
+          "n_assertions": 14,
+          "gemini_31_pro": 0.3571,
+          "claude_opus_47": 0.8571,
+          "gpt55_think": 0.7692
         },
-        "gpt55_think": {
-          "raw": 0.8725,
-          "percentage": 87.25
+        "Equation (or Symbol)": {
+          "n_queries": 7,
+          "n_assertions": 9,
+          "gemini_31_pro": 0.5556,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.7778
+        },
+        "Header/Footer/SlideNum/DateTime": {
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.4,
+          "claude_opus_47": 0.8,
+          "gpt55_think": 0.6
+        },
+        "Hyperlink": {
+          "n_queries": 5,
+          "n_assertions": 7,
+          "gemini_31_pro": 0.8571,
+          "claude_opus_47": 0.8571,
+          "gpt55_think": 0.8571
+        },
+        "Icons": {
+          "n_queries": 1,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Image": {
+          "n_queries": 20,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.52,
+          "claude_opus_47": 0.92,
+          "gpt55_think": 0.9167
+        },
+        "Ink": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.6667,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.3333
+        },
+        "Language": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Metadata": {
+          "n_queries": 3,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.3333,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.6667
+        },
+        "Position/Association/Grouping": {
+          "n_queries": 38,
+          "n_assertions": 48,
+          "gemini_31_pro": 0.7292,
+          "claude_opus_47": 0.8542,
+          "gpt55_think": 0.875
+        },
+        "Section": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.0,
+          "gpt55_think": 0.5
+        },
+        "Shape / Text": {
+          "n_queries": 7,
+          "n_assertions": 9,
+          "gemini_31_pro": 0.2222,
+          "claude_opus_47": 0.6667,
+          "gpt55_think": 0.5556
+        },
+        "Shapes / Type & Color": {
+          "n_queries": 3,
+          "n_assertions": 4,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Slide Note": {
+          "n_queries": 5,
+          "n_assertions": 5,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.6,
+          "gpt55_think": 0.8
+        },
+        "Slide Properties - Hidden": {
+          "n_queries": 2,
+          "n_assertions": 3,
+          "gemini_31_pro": 0.6667,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.6667
+        },
+        "Slide Text": {
+          "n_queries": 79,
+          "n_assertions": 111,
+          "gemini_31_pro": 0.7838,
+          "claude_opus_47": 0.8468,
+          "gpt55_think": 0.9009
+        },
+        "SmartArt / Semantics": {
+          "n_queries": 2,
+          "n_assertions": 3,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "SmartArt / Type & Text": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 0.5,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.5
+        },
+        "Tables / Cell color coding": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Tables / Values": {
+          "n_queries": 20,
+          "n_assertions": 22,
+          "gemini_31_pro": 0.4091,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.8636
+        },
+        "Text Highlight": {
+          "n_queries": 13,
+          "n_assertions": 20,
+          "gemini_31_pro": 0.7,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Video": {
+          "n_queries": 1,
+          "n_assertions": 1,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
         }
       },
-      "long": {
-        "claude_opus_47": {
-          "raw": 1.0,
-          "percentage": 100.0
+      "by_size": {
+        "long": {
+          "n_queries": 110,
+          "n_assertions": 141,
+          "gemini_31_pro": 0.6099,
+          "claude_opus_47": 0.8652,
+          "gpt55_think": 0.8511
         },
+        "medium": {
+          "n_queries": 104,
+          "n_assertions": 133,
+          "gemini_31_pro": 0.6992,
+          "claude_opus_47": 0.8647,
+          "gpt55_think": 0.8647
+        },
+        "small": {
+          "n_queries": 24,
+          "n_assertions": 31,
+          "gemini_31_pro": 0.6129,
+          "claude_opus_47": 0.871,
+          "gpt55_think": 0.871
+        }
+      }
+    },
+    "word": {
+      "main": {
         "gemini_31_pro": {
-          "raw": 0.8462,
-          "percentage": 84.62
+          "score": 0.5528,
+          "n": 492
+        },
+        "claude_opus_47": {
+          "score": 0.9146,
+          "n": 492
         },
         "gpt55_think": {
-          "raw": 0.8846,
-          "percentage": 88.46
+          "score": 0.687,
+          "n": 492
+        }
+      },
+      "by_feature": {
+        "Comment": {
+          "n_queries": 11,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.75
+        },
+        "Equation": {
+          "n_queries": 10,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.8333,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.5833
+        },
+        "Font": {
+          "n_queries": 29,
+          "n_assertions": 35,
+          "gemini_31_pro": 0.1429,
+          "claude_opus_47": 0.9714,
+          "gpt55_think": 0.1714
+        },
+        "Footer": {
+          "n_queries": 13,
+          "n_assertions": 25,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.8,
+          "gpt55_think": 0.36
+        },
+        "Footnote": {
+          "n_queries": 16,
+          "n_assertions": 46,
+          "gemini_31_pro": 0.2826,
+          "claude_opus_47": 0.8696,
+          "gpt55_think": 0.8913
+        },
+        "Header": {
+          "n_queries": 11,
+          "n_assertions": 12,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 0.75,
+          "gpt55_think": 0.1667
+        },
+        "Highlight": {
+          "n_queries": 14,
+          "n_assertions": 24,
+          "gemini_31_pro": 0.0833,
+          "claude_opus_47": 0.5417,
+          "gpt55_think": 0.5
+        },
+        "Hyperlink": {
+          "n_queries": 18,
+          "n_assertions": 18,
+          "gemini_31_pro": 0.1111,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 0.0556
+        },
+        "Layout": {
+          "n_queries": 18,
+          "n_assertions": 21,
+          "gemini_31_pro": 0.0952,
+          "claude_opus_47": 0.9048,
+          "gpt55_think": 0.2857
+        },
+        "Metadata": {
+          "n_queries": 17,
+          "n_assertions": 18,
+          "gemini_31_pro": 0.0,
+          "claude_opus_47": 0.4444,
+          "gpt55_think": 0.0556
+        },
+        "Strikeout": {
+          "n_queries": 10,
+          "n_assertions": 10,
+          "gemini_31_pro": 0.4,
+          "claude_opus_47": 0.9,
+          "gpt55_think": 0.4
+        },
+        "Table": {
+          "n_queries": 143,
+          "n_assertions": 172,
+          "gemini_31_pro": 0.9012,
+          "claude_opus_47": 0.9942,
+          "gpt55_think": 0.9593
+        },
+        "Text": {
+          "n_queries": 62,
+          "n_assertions": 70,
+          "gemini_31_pro": 0.9571,
+          "claude_opus_47": 1.0,
+          "gpt55_think": 1.0
+        },
+        "Textbox": {
+          "n_queries": 9,
+          "n_assertions": 15,
+          "gemini_31_pro": 0.5333,
+          "claude_opus_47": 0.9333,
+          "gpt55_think": 0.2667
+        },
+        "Video": {
+          "n_queries": 2,
+          "n_assertions": 2,
+          "gemini_31_pro": 1.0,
+          "claude_opus_47": 0.5,
+          "gpt55_think": 0.5
+        }
+      },
+      "by_size": {
+        "long": {
+          "n_queries": 56,
+          "n_assertions": 77,
+          "gemini_31_pro": 0.3247,
+          "claude_opus_47": 0.8831,
+          "gpt55_think": 0.3896
+        },
+        "medium": {
+          "n_queries": 77,
+          "n_assertions": 105,
+          "gemini_31_pro": 0.2667,
+          "claude_opus_47": 0.8095,
+          "gpt55_think": 0.4762
+        },
+        "small": {
+          "n_queries": 250,
+          "n_assertions": 310,
+          "gemini_31_pro": 0.7065,
+          "claude_opus_47": 0.9581,
+          "gpt55_think": 0.8323
         }
       }
     }
