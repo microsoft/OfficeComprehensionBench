@@ -48,11 +48,6 @@ export default function FileFidelitySection({ data }: Props) {
           />
         </div>
 
-        <div className="card">
-          <h3>{APP_LABELS[app]} — accuracy by feature</h3>
-          <HeatMap columns={appData.by_feature} models={models} sortBy="claude_opus_47" />
-        </div>
-
         {sizeEntries.length > 0 && (
           <div className="card">
             <h3>{APP_LABELS[app]} — accuracy by document size</h3>
@@ -68,6 +63,11 @@ export default function FileFidelitySection({ data }: Props) {
             </div>
           </div>
         )}
+
+        <div className="card">
+          <h3>{APP_LABELS[app]} — accuracy by feature</h3>
+          <HeatMap columns={appData.by_feature} models={models} sortBy="claude_opus_47" />
+        </div>
       </div>
     );
   };
