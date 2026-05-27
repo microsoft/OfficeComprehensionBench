@@ -37,6 +37,18 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
   padding: 18px 0;
 }
+.ms-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.ms-brand img {
+  display: block;
+}
 .app-header h1 {
   margin: 0;
   font-size: 20px;

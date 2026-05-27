@@ -28,6 +28,10 @@ export default function App() {
     <>
       <header className="app-header">
         <div className="container">
+          <div className="ms-brand">
+            <img src={`${import.meta.env.BASE_URL}microsoft-logo.svg`} alt="Microsoft" width="20" height="20" />
+            <span>Microsoft</span>
+          </div>
           <h1>{data.metadata.benchmark_name}</h1>
           <div className="sub">
             Version {data.metadata.version} · Updated {data.metadata.last_updated}
