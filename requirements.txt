@@ -24,3 +24,9 @@ seaborn>=0.12.0
 # Requires PDF_SERVICES_CLIENT_ID / PDF_SERVICES_CLIENT_SECRET, plus an
 # installed Microsoft Edge or Google Chrome for HTML conversions.
 pdfservices-sdk>=4.2.0
+
+# Apache Tika parsing harness (tika_parser.py / tika_response_generator.py)
+# needs no extra Python packages (it uses `requests` over the Tika Server REST
+# API), but it does require a running Tika Server:
+#   docker run -d -p 9998:9998 apache/tika:latest-full
+# or a local tika-server-standard-<version>.jar plus Java 11+ on PATH.

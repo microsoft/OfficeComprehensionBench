@@ -3,7 +3,23 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
+venv/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
 .env
+.env.local
+.env.*.local
+
+# Node / leaderboard site build output
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+npm-debug.log*
+yarn-error.log*
 
 # Run artifacts
 Output/
@@ -18,11 +34,21 @@ Input/Query/OfficeBenchmark_ExcelQnA_FileFidelity.ndjson
 Input/Query/OfficeBenchmark_PPTQnA_FileFidelity.ndjson
 Input/Query/OfficeBenchmark_WordQnA_FileFidelity.ndjson
 
+# Generated model responses from the Tika harness
+# (Input/Scrape/sample_conversations.ndjson stays tracked)
+Input/Scrape/*_tika.ndjson
+Input/Scrape/*.errors.ndjson
+
 # OS / editor
 .DS_Store
+Thumbs.db
+desktop.ini
 .vscode/
 .idea/
+*.swp
 
 # Local caches / scratch
 _*.parquet
 tmp_html/
+.tika_cache/
+Notes.txt
